@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+    <!--<link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>-->
+    <!--<link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet"-->
+          <!--type="text/css"/>-->
+    <!--<link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>-->
+</head>
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/index}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+                        资质申请
+					</li>
+				</ul>
+			</div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light portlet-fit ">
+                        <div class="portlet-body">
+                            <div class="mt-element-step">
+                                <div class="row step-default" id="index_id">
+
+                                </div>
+                                <input type="hidden" id="userId" th:value="${userId}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<!--<link type="text/css" rel="stylesheet" th:href="@{/assets/global/plugins/select2/css/select2.css}"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/assets/global/plugins/select2/css/select2-bootstrap.min.css}" />-->
+    <!--<script type="text/javascript"  th:src="@{/assets/global/plugins/select2/js/select2.js}"></script>-->
+    <!--<script type="text/javascript"  th:src="@{/assets/global/scripts/doFormatDate.js}"></script>-->
+    <script type="text/javascript"  th:src="@{/backend/apply/apply_index.js}"></script>
+</section>
+</body>
+</html>

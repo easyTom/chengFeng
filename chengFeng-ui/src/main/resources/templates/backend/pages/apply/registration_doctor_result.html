@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+    <link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a th:href="@{/nmis/index}">首页</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        互联网医院执业医师申请
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">互联网医院执业医师审核结果</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="margin-bottom-20 text-center ">
+                        <h3><strong>执业医师申请单</strong></h3>
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered table-hover gtreetable gtreetable-fullAccess" >
+                            <tbody>
+                            <tr>
+                                <td class="text-center col-md-1" width="120px">
+                                    <strong>姓名</strong>
+                                </td>
+                                <td id="name" class="myfont col-md-3">
+                                    <!-- 姓名 -->
+                                </td>
+                                <td class="text-center col-md-1" width="120px">
+                                    <strong>性别</strong>
+                                </td>
+                                <td id="gender" class="myfont col-md-2">
+                                    <!-- 性别 -->
+                                </td>
+                                <td class="text-center col-md-1" width="120px">
+                                    <strong>名族</strong>
+                                </td>
+                                <td id="ethnicity" class="myfont col-md-2">
+                                    <!-- 名族 -->
+                                </td>
+                                <td class="text-center col-md-2" rowspan="8">
+                                    <img id="photo" data-src="holder.js/200x270/text:no image" style="width: 180px; height: 270px; max-width: 180px; max-height: 270px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>证件类型</strong>
+                                </td>
+                                <td id="cardType" class="myfont">
+                                    <!-- 证件类型 -->
+                                </td>
+                                <td class="text-center">
+                                    <strong>证件号码</strong>
+                                </td>
+                                <td id="cardId" class="myfont" colspan="3">
+                                    <!-- 证件号码 -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>通讯地址</strong>
+                                </td>
+                                <td id="address" class="myfont" colspan="5">
+                                    <!-- 通讯地址 -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>联系电话</strong>
+                                </td>
+                                <td id="telephone" class="myfont">
+
+                                </td>
+                                <td class="text-center">
+                                    <strong>联系手机</strong>
+                                </td>
+                                <td id="mobile" colspan="3" class="myfont">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>学历</strong>
+                                </td>
+                                <td id="education" class="myfont">
+
+                                </td>
+                                <td class="text-center">
+                                    <strong>行政职务</strong>
+                                </td>
+                                <td id="positionalTitle" colspan="3" class="myfont">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>专业职称</strong>
+                                </td>
+                                <td id="professionalTitle" class="myfont">
+
+                                </td>
+                                <td class="text-center">
+                                    <strong>科室</strong>
+                                </td>
+                                <td id="depart" colspan="3" class="myfont">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>资格证书编号</strong>
+                                </td>
+                                <td id="certificateId" class="myfont">
+
+                                </td>
+                                <td class="text-center">
+                                    <strong>执业地点</strong>
+                                </td>
+                                <td id="workingPlace" class="myfont" colspan="3">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>执业类别</strong>
+                                </td>
+                                <td id="workingClass" class="myfont">
+
+                                </td>
+                                <td class="text-center">
+                                    <strong>执业单位</strong>
+                                </td>
+                                <td id="workingOrg" class="myfont" colspan="3">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="1">
+                                    <strong>执业范围</strong>
+                                </td>
+                                <td id="workingContent" colspan="6" height="50px" class="myfont">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="1">
+                                    <strong>专业特长</strong>
+                                </td>
+                                <td id="skills" colspan="6" height="50px" class="myfont">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>个人简介</strong>
+                                </td>
+                                <td colspan="6" height="220px" style="word-wrap:break-word;word-break:normal ;">
+                                    <pre id="introduction" class="td_pre myfont">   </pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>签名</strong>
+                                </td>
+                                <td height="220px" colspan="7">
+                                    <img id="signature" data-src="holder.js/270x200/text:no image" style="width: 275px; height: 195px; max-width: 275px; max-height: 195px;">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+            <!-- END PAGE CONTENT-->
+
+            <input id="doctorId" type="hidden" th:value="4028ca816966b4d7016966e3662d0004">
+
+        </div>
+    </div>
+    <script type="text/javascript"  th:src="@{/backend/apply/registration_doctor_result.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/gender.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/education.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/ethnicity.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/positionalTitle.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/professionalTitle.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/cardType.js}"></script>
+</section>
+</body>
+</html>

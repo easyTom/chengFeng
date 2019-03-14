@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{backend/layouts/default}">
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/apply/}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						实体医疗机构信息
+					</li>
+				</ul>
+			</div>
+
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-equalizer font-red-sunglo"></i>
+						<span class="caption-subject font-red-sunglo bold uppercase">实体医疗机构信息</span>
+						<span class="caption-helper" th:if="${status} eq '0'">未填写</span>
+						<span class="caption-helper" th:if="${status} eq '1'">待审核</span>
+						<span class="caption-helper" th:if="${status} eq '2'">审核通过</span>
+						<span class="caption-helper" th:if="${status} eq '3'">审核未通过</span>
+					</div>
+					<div class="actions">
+						<div class="btn-group btn-group-devided" data-toggle="buttons">
+							<a shiro:hasAnyPermissions="apply_new_ihos,apply_second_name" class="btn btn-transparent red btn-outline btn-circle btn-sm" data-toggle="modal" th:href="@{'/nmis/apply/hospital_subject?userId=' + ${userId} + '&status=' + ${status}}">
+								添加专科</a>
+							<a shiro:hasAnyPermissions="apply_new_ihos,apply_second_name" class="btn btn-transparent red btn-outline btn-circle btn-sm" data-toggle="modal" th:href="@{'/nmis/apply/hospital_depart?userId=' + ${userId} + '&status=' + ${status}}">
+								添加科室</a>
+							<a shiro:hasAnyPermissions="approve_ihos" class="btn btn-transparent red btn-outline btn-circle btn-sm" data-toggle="modal" th:href="@{'/nmis/apply/hospital_subject?userId=' + ${userId} + '&status=' + ${status}}">
+								专科</a>
+							<a shiro:hasAnyPermissions="approve_ihos" class="btn btn-transparent red btn-outline btn-circle btn-sm" data-toggle="modal" th:href="@{'/nmis/apply/hospital_depart?userId=' + ${userId} + '&status=' + ${status}}">
+								科室</a>
+						</div>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<form  class="form-horizontal" id="form" onsubmit="return false">
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构代码<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="orgCode" name="orgCode" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构名称<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="orgName" name="orgName" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构地址<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="address" name="address" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											法人代表<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="representative" name="representative" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											联系人<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="contact" name="contact" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											联系人电话<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="mobile" name="mobile" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											执业登记号<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="regCode" name="regCode" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											执业许可证有效期限<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="regStartDate" name="regStartDate" class="form-control-static"></p>至<p id="regEndDate" name="regEndDate" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											签发机关<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="issueDepart" name="issueDepart" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											签发日期<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="issueDate" name="issueDate" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构类别<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="category" name="category" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构分类管理类型<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="economic" name="economic" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											经济属性<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="ownership" name="ownership" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构级别<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="level" name="level" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<div class="row">
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											机构等次<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<p id="grade" name="grade" class="form-control-static"></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											附件<span class="required" aria-required="true">*</span>
+										</label>
+										<div class="col-md-9">
+											<a th:href="@{/nmis/api/apply/hospital/download}" id="attachment" name="attachment" class="form-control-static"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-actions left">
+							<input type="hidden" th:value="${userId}" id="userId" name="userId" />
+						</div>
+					</form>
+                    <div th:replace="backend/pages/apply/public_modal :: modal_div">modal</div>
+				</div>
+                <p class="text-center">
+                    <a shiro:hasPermission="approve_ihos" th:if="${status} eq '1'" href="javascript:exam();" class="btn blue" id="yishenhe_button">审核</a>
+					<a shiro:hasPermission="approve_ihos" th:href="@{'/nmis/apply/examine/detail/'+${userId}}" class="btn blue">返回</a>
+					<a shiro:hasAnyPermissions="apply_new_ihos,apply_second_name" th:href="@{/nmis/apply/}" class="btn blue">返回</a>
+                </p>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+	<script type="text/javascript"  th:src="@{/backend/apply/hospital.js}"></script>
+</section>
+</body>
+</html>

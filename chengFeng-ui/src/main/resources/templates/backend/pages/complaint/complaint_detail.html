@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns="http://www.w3.org/1999/html"
+	  layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+	<link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet"
+		  type="text/css"/>
+	<link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/summary/index}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a th:href="@{/nmis/quality/complaint}">医院纠纷投诉</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						投诉详情页
+					</li>
+				</ul>
+			</div>
+			<div class="page-bar">
+				<h3 style="text-align:center">投诉信息</h3>
+				<table class="table table-bordered table-hover">
+					<tbody>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉对象</strong>
+						</td>
+						<td id="orgCode"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉人员</strong>
+						</td>
+						<td id="targetName"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>患者姓名</strong>
+						</td>
+						<td id="patientName"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉内容</strong>
+						</td>
+						<td id="content"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>诉求</strong>
+						</td>
+						<td id="appeal"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉者姓名</strong>
+						</td>
+						<td id="submitter"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉者电话</strong>
+						</td>
+						<td id="telephone"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>投诉时间</strong>
+						</td>
+						<td id="submitDatetime"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>处理状态</strong>
+						</td>
+						<td id="status"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>处理者</strong>
+						</td>
+						<td id="handleUserId"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>处理结果</strong>
+						</td>
+						<td id="handleResult"></td>
+					</tr>
+					<tr>
+						<td style="width: 20%;vertical-align: middle !important;text-align: center;">
+							<strong>处理时间</strong>
+						</td>
+						<td id="handleDatetime"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="clearfix margin-bottom-20"></div>
+			<p class="text-center" id="processButton" style="display: none;">
+				<a href="javascript:complaintDetail.process();" class="btn blue" id="shenhe_button">处理</a>
+			</p>
+		</div>
+		
+		<!-- 模态框开始 -->
+		<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						<h4 class="modal-title">处理结果</h4>
+					</div>
+					<form id="submit_form" method="post" novalidate="novalidate" onsubmit="return false;">
+						<div class="modal-body">
+							<div class="scroller" style="height:280px" data-always-visible="1" data-rail-visible1="1">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="alert alert-danger display-hide" style="display: hide;" id="error_div">
+											<button class="close" data-close="alert"></button>
+											<span id="check_msg"></span>
+										</div>
+										<div class="form-group">
+											<label class="control-label">处理结果:</label></br>
+											<textarea id="handleResult" name="handleResult" class="form-control" aria-required="true" style="height: 210px;resize: none;"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="hidden" name="id" id="userId" th:value="${id}">
+							<button type="submit" class="btn green">确定</button>
+							<button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框结束 -->
+	
+	<style>
+		.errorStyle {
+			color: red;
+			border-color: red;
+		}
+	</style>
+	<script th:inline="javascript">
+		var id = [[${id}]];
+	</script>
+	<script type="text/javascript" th:src="@{/backend/complaint/complaint_detail.js}"></script>
+</section>
+</body>
+</html>

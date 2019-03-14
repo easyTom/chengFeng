@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" th:fragment="sidebar-menu">
+
+    <!-- BEGIN SIDEBAR MENU -->
+    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu  " id="sidebar-menu"
+        data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+
+        <!--<shiro:hasAnyRoles name="1">-->
+
+        <li class="nav-item start">
+            <a th:href="@{/nmis/user/index}" class="nav-link nav-toggle">
+                <i class="fa fa-home"></i>
+                <span class="title">首页</span>
+            </a>
+        </li>
+        <shiro:hasPermission name="manage_account">
+        <li class="nav-item start">
+            <a th:href="@{/nmis/user/manage}" class="nav-link nav-toggle">
+                <i class="fa fa-home"></i>
+                <span class="title">账号管理</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+
+        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
+        <li class="nav-item">
+            <a th:href="@{/nmis/apply/}" class="nav-link nav-toggle">
+                <i class="fa fa-hospital-o"></i>
+                <span class="title">资质申请</span>
+            </a>
+        </li>
+        </shiro:hasAnyPermissions>
+        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
+        <li class="nav-item">
+            <a th:href="@{/nmis/nmStaff/}" class="nav-link nav-toggle">
+                <i class="fa fa-anchor"></i>
+                <span class="title">科室与人员管理</span>
+            </a>
+        </li>
+        </shiro:hasAnyPermissions>
+        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
+        <li class="nav-item ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-hourglass"></i>
+                <span class="title">业务记录</span>
+                <span class="arrow"></span>
+            </a>
+        <ul class="sub-menu">
+            <li class="nav-item" >
+                <a th:href="@{/nmis/nmInquiry/}" class="nav-link nav-toggle">
+                    <i class="fa fa-user-md"></i>
+                    <span class="title">患者信息</span>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a th:href="@{/nmis/nmInquiry/}" class="nav-link nav-toggle">
+                    <i class="fa fa-h-square"></i>
+                    <span class="title">问诊记录</span>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a th:href="@{/nmis/nmPrescription/index}" class="nav-link nav-toggle">
+                    <i class="fa fa-plus-square"></i>
+                    <span class="title">处方记录</span>
+                </a>
+            </li>
+	        <li class="nav-item" >
+	            <a th:href="@{/nmis/nmTeleconsultation/}" class="nav-link nav-toggle">
+	                <i class="fa fa-header"></i>
+	                <span class="title">远程会诊记录</span>
+	            </a>
+	        </li>
+        <li class="nav-item">
+            <a th:href="@{/nmis/nmRadiology/}" class="nav-link nav-toggle">
+                <i class="fa fa-image"></i>
+                <span class="title">远程影像记录</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/nmis/nmEcg/}" class="nav-link nav-toggle">
+                <i class="fa fa-heart"></i>
+                <span class="title">远程心电记录</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/nmis/nmPathology/}" class="nav-link nav-toggle">
+                <i class="fa fa-search"></i>
+                <span class="title">远程病理记录</span>
+            </a>
+        </li>
+        </ul>
+        </li>
+        </shiro:hasAnyPermissions>
+        <shiro:hasPermission name="approve_ihos">
+        <li class="nav-item">
+            <a th:href="@{/nmis/apply/examine}" class="nav-link nav-toggle">
+                <i class="fa fa-shield"></i>
+                <span class="title">准入审核</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="view_all_ihos">
+            <li class="nav-item">
+                <a th:href="@{/nmis/apply/examine}" class="nav-link nav-toggle">
+                    <i class="fa fa-heart"></i>
+                    <span class="title">备案查阅</span>
+                </a>
+            </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="supervise_business">
+        <li class="nav-item">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-balance-scale"></i>
+                <span class="title">业务监管</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/medication}" class="nav-link nav-toggle">
+                        <i class="fa fa-heart"></i>
+                        <span class="title">问诊记录</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/complaint}" class="nav-link nav-toggle">
+                        <i class="fa fa-ambulance"></i>
+                        <span class="title">处方记录</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                        <i class="fa fa-file"></i>
+                        <span class="title">远程会诊记录</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                        <i class="fa fa-file"></i>
+                        <span class="title">远程病理记录</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                        <i class="fa fa-file"></i>
+                        <span class="title">远程影像记录</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                        <i class="fa fa-file"></i>
+                        <span class="title">远程心电记录</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasAnyPermissions name="statistic_self,statistic_area,statistic_all">
+        <li class="nav-item ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-bar-chart"></i>
+                <span class="title">业务统计</span>
+                <span class="arrow"></span>
+            </a>
+        <ul class="sub-menu">
+            <shiro:hasAnyPermissions name="statistic_area,statistic_all">
+            <li class="nav-item">
+                <a th:href="@{/nmis/statistics/byOrg}" class="nav-link nav-toggle">
+                    <i class="fa fa-user-md"></i>
+                    <span class="title">机构与人员统计</span>
+                </a>
+            </li>
+            </shiro:hasAnyPermissions>
+            <li class="nav-item">
+                <a th:href="@{/nmis/statistics/byTime}" class="nav-link nav-toggle">
+                    <i class="fa fa-database"></i>
+                    <span class="title">时间统计</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/nmis/statistics/byDoctor}" class="nav-link nav-toggle">
+                    <i class="fa fa-hospital-o"></i>
+                    <span class="title">人员统计</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/nmis/statistics/byDrug}" class="nav-link nav-toggle">
+                    <i class="fa fa-plus-square"></i>
+                    <span class="title">药品统计</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/nmis/statistics/byAppraise}" class="nav-link nav-toggle">
+                    <i class="fa fa-hand-o-right"></i>
+                    <span class="title">评价统计</span>
+                </a>
+            </li>
+        </ul>
+        </li>
+        </shiro:hasAnyPermissions>
+
+        <shiro:hasPermission name="manage_notice">
+        <li class="nav-item">
+            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">通知公告</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="report_accident">
+        <li class="nav-item">
+            <a th:href="@{/nmis/quality/unhealthy/report}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">不良事件上报</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="reply_accident">
+        <li class="nav-item">
+            <a th:href="@{/nmis/quality/unhealthy/list}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">不良事件批复</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="handle_complaint">
+        <li class="nav-item">
+            <a th:href="@{/nmis/quality/complaint}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">投诉处理</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="config_system">
+        <li class="nav-item">
+            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">系统设置</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="view_supervise_rule">
+        <li class="nav-item">
+            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+                <i class="fa fa-list-alt"></i>
+                <span class="title">监管规则</span>
+            </a>
+        </li>
+        </shiro:hasPermission>
+    </ul>
+
+    <!-- END SIDEBAR MENU -->
+    <script th:inline="javascript">
+        var toggler = window.localStorage.getItem("toggler");
+        if (toggler) {
+            $("body").addClass("page-sidebar-closed");
+            $("#sidebar-menu").addClass("page-sidebar-menu-closed");
+        }
+        jQuery(document).ready(function () {
+        	String.prototype.startWith = function(s){
+				if(s==null||s==""||this.length==0||s.length>this.length)
+    	   			return false;
+    	  		if(this.substr(0,s.length)==s)
+    	     		return true;
+    	  		else
+    	     		return false;
+        	}
+			//当前浏览器地址栏的路径        	
+            var d_url = window.location.pathname;
+            $("a").each(function () {
+            	//当前页面中配置的a标签的href属性的路径
+                var v = $(this).attr("href");
+            	if(d_url == '/nmis/nmOrgInfo/detail/10086'){
+            		if (d_url == v) {
+	                    $(this).parents('.nav-item ').addClass("active open");
+	                    $(".nav-link").append('<span class="selected"></span>');
+	                }
+            	}else if(d_url == '/ecg/examination/tjfx'){
+            		if (d_url == v) {
+	            		$(this).parents('.nav-item ').addClass("active open");
+	                    $(".nav-link").append('<span class="selected"></span>');
+            		}
+            	}else{
+	                var result = d_url.startWith(v);
+	                if (d_url == v || result) {
+	                    $(this).parents('.nav-item ').addClass("active open");
+	                    $(".nav-link").append('<span class="selected"></span>');
+	                }
+            	}
+            });
+        });
+    </script>
+
+</html>

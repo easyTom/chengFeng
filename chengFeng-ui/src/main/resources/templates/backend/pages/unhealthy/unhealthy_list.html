@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+    <link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/index}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						医院纠纷投诉
+					</li>
+				</ul>
+			</div>
+			<div class="portlet box grey-cararra">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-calendar"></i>账号管理数据列表
+					</div>
+				</div>
+				<div class="portlet-body">
+					<table class="table table-striped table-bordered table-hover" id="myTable">
+						<thead>
+							<tr>
+								<th>
+									发生时间
+								</th>
+								<th>
+									患者姓名
+								</th>
+								<th>
+									患者病情
+								</th>
+								<th>
+									事件等级
+								</th>
+								<th>
+									上报时间
+								</th>
+								<th>
+									状态
+								</th>
+								<th>
+									批复时间
+								</th>
+								<th>
+									操作
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+			<!-- 模态框开始 -->
+			<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">不良事件处理</h4>
+						</div>
+						<form id="submit_form" method="post" novalidate="novalidate" onsubmit="return false;">
+							<div class="modal-body">
+								<div class="scroller" style="height:280px" data-always-visible="1" data-rail-visible1="1">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="alert alert-danger display-hide" style="display: hide;" id="error_div">
+												<button class="close" data-close="alert"></button>
+												<span id="check_msg"></span>
+											</div>
+											<div class="form-group">
+												<label class="control-label">事件批复:</label></br>
+												<textarea id="memo" name="memo" class="form-control" aria-required="true" style="height: 210px;resize: none;"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="hidden" name="id" id="userId" th:value="${id}">
+								<button type="submit" class="btn green">确定</button>
+								<button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 模态框结束 -->
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+	<style>
+		.center{
+			text-align: center;
+		}
+		.errorStyle {
+			color: red;
+			border-color: red;
+		}
+	</style>
+    <script type="text/javascript"  th:src="@{/backend/unhealthy/unhealthy_list.js}"></script>
+</section>
+</body>
+</html>

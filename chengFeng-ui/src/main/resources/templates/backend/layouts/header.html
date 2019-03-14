@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" th:fragment="header">
+
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-static-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner ">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <!--<img th:src="@{/img/summary.png}" alt="logo" class="logo-default"/>-->
+                <div class="menu-toggler sidebar-toggler" id="toggler">
+                    <span></span>
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+               data-target=".navbar-collapse">
+                <span></span>
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
+                    <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                    <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+
+                    <!-- END NOTIFICATION DROPDOWN -->
+                    <!-- BEGIN INBOX DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                    <!-- END INBOX DROPDOWN -->
+                    <!-- BEGIN TODO DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                    <!-- END TODO DROPDOWN -->
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <!--<li class="dropdown dropdown-user">-->
+                        <!--<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
+                           <!--data-close-others="true">-->
+                            <!--<span class="username username-hide-on-mobile"><i-->
+                                    <!--class="fa fa-soccer-ball-o"></i> 业务功能</span>-->
+                            <!--<i class="fa fa-angle-down"></i>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu" id="businessMenu"></ul>-->
+                    <!--</li>-->
+                    <!--<li class="dropdown dropdown-user">-->
+                        <!--<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
+                           <!--data-close-others="true">-->
+                            <!--<span class="username username-hide-on-mobile"><i class="fa fa-gears"></i>	管理功能</span>-->
+                            <!--<i class="fa fa-angle-down"></i>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu" id="runningMenu"></ul>-->
+                    <!--</li>-->
+
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <img alt="" class="img-circle" th:src="@{/assets/layouts/layout/img/avatar.png}"/>
+                            <span class="username username-hide-on-mobile"> <shiro:principal/> </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li id="esc">
+                                <a th:href="@{/logout}">
+                                    <i class="icon-key"></i> 注销</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                    <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                    <!-- END QUICK SIDEBAR TOGGLER -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <script>
+        $("#esc").click(function () {
+            window.localStorage.clear();
+        });
+        $("#toggler").on("click", function () {
+            if ($("body").hasClass("page-sidebar-closed")) {
+                window.localStorage.setItem("toggler", "")
+            }
+            if (!$("body").hasClass("page-sidebar-closed")) {
+                window.localStorage.setItem("toggler", "toggler")
+            }
+        });
+
+        jQuery(document).ready(function () {
+            var business = $("#businessMenu").html("");
+            var running = $("#runningMenu").html("");
+
+        });
+    </script>
+
+</html>

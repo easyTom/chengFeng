@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+	<link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet"
+		  type="text/css"/>
+	<link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/apply/}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/apply/registration_depart(userId=${userId},status=${status})}">互联网医院科室</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						互联网医院其它科室申请
+					</li>
+				</ul>
+			</div>
+
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-equalizer font-red-sunglo"></i>
+						<span class="caption-subject font-red-sunglo bold uppercase">互联网医院其它科室申请</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<form th:action="@{/nmis/api/registrationDepartExtra}" method="post" class="horizontal-form" id="myForm">
+						<div class="form-body">
+							<div class="margin-bottom-20 text-center ">
+								<h3><strong>科室设置</strong></h3>
+							</div>
+
+							<div class="row">
+								<h4><strong>质量管理部门</strong></h4>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门名称</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="qaDepart" class="form-control" id="qaDepart">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="qaContact" class="form-control" id="qaContact">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人电话</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="qaContactTel" class="form-control" id="qaContactTel">
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<h4><strong>IT部门</strong></h4>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门名称</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="itDepart" class="form-control" id="itDepart">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="itContact" class="form-control" id="itContact">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人电话</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="itContactTel" class="form-control" id="itContactTel">
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<h4><strong>药学服务部门</strong></h4>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门名称</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="drugDepart" class="form-control" id="drugDepart">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="drugContact" class="form-control" id="drugContact">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label class="control-label"><strong>部门负责人电话</strong><span class="required" aria-required="true"> * </span></label>
+										<input type="text" name="drugContactTel" class="form-control" id="drugContactTel">
+									</div>
+								</div>
+							</div>
+							<!--/row-->
+
+							<input type="hidden" id="userId" name="userId" th:value="${userId}">
+							<div class="form-actions right">
+								<button type="submit" class="btn blue">
+									<i class="fa fa-check"></i> 递交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+    <script type="text/javascript"  th:src="@{/backend/apply/registration_depart_extra_apply.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/gender.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/education.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/ethnicity.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/positionalTitle.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/professionalTitle.js}"></script>
+    <script type="text/javascript"  th:src="@{/global/dictionary/cardType.js}"></script>
+</section>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+<head>
+    <link th:href="@{/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<section layout:fragment="content">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a th:href="@{/nmis/apply/}">首页</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        互联网医院规章制度
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">互联网医院规章制度</span>
+                        <span class="caption-helper" th:if="${status} eq '0'">未填写</span>
+                        <span class="caption-helper" th:if="${status} eq '1'">待审核</span>
+                        <span class="caption-helper" th:if="${status} eq '2'">审核通过</span>
+                        <span class="caption-helper" th:if="${status} eq '3'">审核未通过</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form id="form"  class="form-horizontal" onsubmit="return false" >
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            互联网医疗服务管理制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation1" name="regulation1" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            互联网医院信息系统使用管理制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation2" name="regulation2" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            互联网医疗质量控制和评价制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation3" name="regulation3" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            在线处方管理制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation4" name="regulation4" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            患者知情同意与登记制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation5" name="regulation5" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            在线医疗文书管理制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation6" name="regulation6" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            在线复诊患者风险评估与突发状况预防处置制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation7" name="regulation7" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            人员培训考核制度<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation8" name="regulation8" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            突发事件的应急预案<span class="required" aria-required="true">*</span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation9" name="regulation9" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6">
+                                            其它制度
+                                        </label>
+                                        <div class="col-md-6">
+                                            <a th:href="@{/nmis/api/apply/registrationRegulation/download}" id="regulation10" name="regulation10" class="form-control-static"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions left">
+                            <input type="hidden" th:value="${userId}" id="userId" name="userId" />
+                            <input type="hidden" id="id" name="id" th:value="${id}">
+                        </div>
+                    </form>
+                    <div th:replace="backend/pages/apply/public_modal :: modal_div">modal</div>
+                </div>
+                <p class="text-center">
+                    <a shiro:hasPermission="approve_ihos" th:if="${status} eq '1'" href="javascript:exam();" class="btn blue" id="yishenhe_button">点击审核</a>
+                    <a shiro:hasPermission="approve_ihos" th:if="${status} eq '1'" th:href="@{/nmis/apply/}"  class="btn blue" id="yishenhe_button">返回</a>
+                </p>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+            <!-- END PAGE CONTENT-->
+        </div>
+    </div>
+    <script th:src="@{/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js}" type="text/javascript"></script>
+    <script type="text/javascript"  th:src="@{/backend/apply/registration_regulation.js}"></script>
+</section>
+</body>
+</html>

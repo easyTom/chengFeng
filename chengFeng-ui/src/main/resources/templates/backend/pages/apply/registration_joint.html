@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<body>
+<section layout:fragment="content">
+	<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+		<div class="page-content">
+			
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a th:href="@{/nmis/apply/}">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						互联网医院系统对接
+					</li>
+				</ul>
+			</div>
+
+			<div class="portlet light bordered">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-equalizer font-red-sunglo"></i>
+						<span class="caption-subject font-red-sunglo bold uppercase">互联网医院对接情况</span>
+						<span class="caption-helper" th:if="${status} eq '0'">未填写</span>
+						<span class="caption-helper" th:if="${status} eq '1'">待审核</span>
+						<span class="caption-helper" th:if="${status} eq '2'">审核通过</span>
+						<span class="caption-helper" th:if="${status} eq '3'">审核未通过</span>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<form class="form-horizontal" id="form" role="form">
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4">是否对接复诊: </label>
+										<div class="col-md-8 col-md-offset-1">
+											<p class="form-control-static" id="comebackBool"> </p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="comebackMemo"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >是否对接家庭医生服务: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="homecareBool"></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="homecareMemo"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >是否对接远程会诊: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="teleconsultantBool"></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="teleconsultantMemo"> </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4">是否对接远程门诊: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="outpatientBool"></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="outpatientMemo"> </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label  class="control-label col-md-4" >是否对接远程病理: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="pathologyBool"> </p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4">备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="pathologyMemo"> </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label  class="control-label col-md-4" >是否对接远程影像: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="radiologyBool"> </p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="radiologyMemo"> </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >是否有远程心电功能: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="ecgBool"> </p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4" >备注: </label>
+										<div class="col-md-8">
+											<p class="form-control-static" id="ecgMemo"> </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-actions left">
+							<input type="hidden" id="userId" th:value="${userId}">
+						</div>
+					</form>
+					<div th:replace="backend/pages/apply/public_modal :: modal_div">modal</div>
+				</div>
+				<p class="text-center">
+					<a shiro:hasPermission="approve_ihos" th:if="${status} eq '1'" href="javascript:exam();" class="btn blue" id="yishenhe_button">审核</a>
+					<a shiro:hasPermission="approve_ihos" th:href="@{'/nmis/apply/examine/detail/'+${userId}}" class="btn blue">返回</a>
+					<a shiro:hasAnyPermissions="apply_new_ihos,apply_second_name" th:href="@{/nmis/apply/}" class="btn blue">返回</a>
+				</p>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+    <script type="text/javascript"  th:src="@{/backend/apply/registration_joint.js}"></script>
+</section>
+</body>
+</html>

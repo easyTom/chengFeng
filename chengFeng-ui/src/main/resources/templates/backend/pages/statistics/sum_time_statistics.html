@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+    <link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet"
+          type="text/css"/>
+    <!--<link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>-->
+</head>
+
+<body>
+<section layout:fragment="content">
+
+	<div class="page-content-wrapper">
+		<div class="page-content">
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light bordered">
+                        <input id="time" type="hidden">
+						<button type="button" class="btn btn-info" id="btn_day">
+							<i class="fa fa-calendar-o"></i> 按天统计
+						</button>
+						<button type="reset" class="btn btn-info" id="btn_month">
+							<i class="fa fa-calendar-check-o"></i> 按月统计
+						</button>
+						<button type="button" class="btn btn-info" id="btn_year">
+							<i class="fa fa-calendar"></i> 按年统计
+						</button>
+					</div>
+                    <div class="portlet light bordered" style="height: 300px;width: 100%;" id="ycwz"></div>
+					<div class="portlet light bordered" style="height: 300px;width: 100%;" id="ychz"></div>
+					<div class="portlet light bordered" style="height: 300px;width: 100%;" id="ycyx"></div>
+					<div class="portlet light bordered" style="height: 300px;width: 100%;" id="ycxd"></div>
+					<div class="portlet light bordered" style="height: 300px;width: 100%;" id="ycjy"></div>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+	<script th:src="@{/echarts/dist/echarts.js}" type="text/javascript"></script>
+	<script th:src="@{/backend/statistics/sum_time_statistics.js}" type="text/javascript"></script>
+</section>
+</body>
+</html>
