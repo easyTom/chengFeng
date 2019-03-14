@@ -8,4 +8,4 @@ logs
 /.classpath
 /.project
 /.settings/
-/temp/
+/ehcache/
