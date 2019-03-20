@@ -4,6 +4,7 @@ import com.tom.cf.core.dao.repository.UserRightRepository;
 import com.tom.cf.core.entity.UseRright;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -21,4 +22,7 @@ public class UserRightService {
         nmUserRightRepository.save(useRright);
     }
 
+    @Transactional
+    public void DeleteByUserId(String userId) {
+    }
 }

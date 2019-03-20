@@ -12,110 +12,100 @@
 
 <body>
 <section layout:fragment="content">
-	<!-- BEGIN CONTENT -->
-<div class="page-content-wrapper">
-		<div class="page-content">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
 
-			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<!-- BEGIN PAGE HEADER-->
-			<div class="page-bar">
-				<ul class="page-breadcrumb">
-					<li>
-						<i class="fa fa-home"></i>
-						<a th:href="@{/summary/index}">首页</a>
-						<i class="fa fa-angle-right"></i>
-					</li>
-					<li>
-账号详情
-					</li>
-				</ul>
-			</div>
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
             <div class="page-bar">
-                <h3 style="text-align:center">账号信息</h3>
-            <table class="table table-bordered table-hover">
-                <tbody>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>id</strong>
-                    </td>
-                    <td id="user_id"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>用户名</strong>
-                    </td>
-                    <td id="user_name"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>真实姓名</strong>
-                    </td>
-                    <td id="real_name"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>手机</strong>
-                    </td>
-                    <td id="mobile"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>所属单位</strong>
-                    </td>
-                    <td id="org_name"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>注册目的</strong>
-                    </td>
-                    <td id="purpose"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>token</strong>
-                    </td>
-                    <td id="token"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>注册时间</strong>
-                    </td>
-                    <td id="created_at"></td>
-                </tr>
-                <tr>
-                    <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>状态</strong>
-                    </td>
-                    <td id="status_ht"></td>
-                </tr>
-                </tbody>
-            </table>
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        账号管理
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a th:href="@{/nmis/user/manage}">账号列表</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        账号信息
+                    </li>
+                </ul>
+            </div>
+            <div class="page-bar">
+                <h3 style="text-align:center">用户账号信息</h3>
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>id</strong>
+                        </td>
+                        <td id="user_id"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>用户名</strong>
+                        </td>
+                        <td id="user_name"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>真实姓名</strong>
+                        </td>
+                        <td id="real_name"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>手机</strong>
+                        </td>
+                        <td id="mobile"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>所属单位</strong>
+                        </td>
+                        <td id="org_name"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>token</strong>
+                        </td>
+                        <td id="token"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>注册时间</strong>
+                        </td>
+                        <td id="created_at"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;vertical-align: middle !important;text-align: center;"><strong>状态</strong>
+                        </td>
+                        <td id="status_ht"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="clearfix margin-bottom-20"> </div>
             <p class="text-center">
                 <a href="javascript:userManageDetail.add();" class="btn blue" id="shenhe_button">账号审核与授权</a>
-                <!--<a href="#" class="btn blue" id="yishenhe_button">已审核</a>-->
             </p>
-		</div>
+        </div>
 
 
-    <!-- /.modal -->
-    <div id="modal" class="modal fade" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">账号审核与授权</h4>
-                </div>
-                <form id="submit_form" method="post" novalidate="novalidate" onsubmit="return false;">
-                    <div class="modal-body">
-                        <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="alert alert-danger display-hide" style="display: hide;"id="error_div">
-                                        <button class="close" data-close="alert"></button> <span id="check_msg"></span>
-                                    </div>
-                                    <!--
-                                    <div class="form-group">
-                                        <label class="control-label">检查类别<span class="required"
-                                            aria-required="true"> * </span></label> <select
-                                            class="form-control" id="modality" name="modality"></select>
-                                    </div>
-                                     -->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" style="margin-left: -14px;">审核状态<span class="required" aria-required="true"> * </span></label><span id="add_status_check"></span>
-                                        <div class="col-md-9">
+        <!-- /.modal -->
+        <div id="modal" class="modal fade" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">账号审核与授权</h4>
+                    </div>
+                    <form id="submit_form" method="post" novalidate="novalidate" onsubmit="return false;">
+                        <div class="modal-body" style="margin-left: 5px">
+                            <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger display-hide" style="display:none;" id="error_div">
+                                            <button class="close" data-close="alert"></button> <span id="check_msg"></span>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="control-label" style="margin-left: -17px;">审核状态<span class="required" aria-required="true"> * </span></label><span id="add_status_check"></span>
                                             <div class="mt-radio-inline">
                                                 <label class="mt-radio">
                                                     <input type="radio" name="status" value="0" checked="checked">未启用
@@ -127,49 +117,32 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">上级账号</label></br>
-                                        <select id="parentId" name="parentId" class="form-control " aria-required="true"></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">备注</label>
-                                        <input class="form-control" id="memo" name="memo" type="text" aria-required="true">
-                                    </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" style="margin-left: -17px;">备注</label>
+                                            <input class="form-control" id="memo" name="memo" type="text" aria-required="true">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" style="margin-left: -17px;">权限分配<span class="required" aria-required="true"> * </span></label><span id="authorityCheck"></span>
-                                        <div class="col-md-9">
-                                            <div class="mt-checkbox-list" id="authority_div">
-                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                    <input type="checkbox" name="authority"> 权限1
-                                                    <span></span>
-                                                </label>
-                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                    <input type="checkbox" name="authority"> 权限2
-                                                    <span></span>
-                                                </label>
-                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                    <input type="checkbox" name="authority"> 权限3
-                                                    <span></span>
-                                                </label>
+                                        <div class="form-group col-md-12">
+                                            <label class="control-label" style="margin-left: -17px;">权限分配<span class="required" aria-required="true"> * </span></label><span id="authorityCheck"></span>
+                                            <div>
+                                                <div class="mt-checkbox-list" id="authority_div">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="userId" id="userId" th:value="${userId}">
-                        <button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
-                        <button type="submit" class="btn green">确定</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <input type="hidden" name="userId" id="userId" th:value="${userId}">
+                            <button type="submit" class="btn blue"><i class="fa fa-check"></i> 确定</button>
+                            <button type="button" data-dismiss="modal" class="btn dark btn-outline">取消</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-	</div>
     <script th:inline="javascript">
         var userId = [[${userId}]];
     </script>

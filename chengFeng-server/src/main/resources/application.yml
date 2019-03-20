@@ -38,7 +38,7 @@ spring:
   jpa:
     hibernate:
       # 实体类有更新时，数据库表更新
-      #ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true

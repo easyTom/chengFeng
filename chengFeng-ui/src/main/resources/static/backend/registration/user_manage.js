@@ -1,7 +1,6 @@
 var TableDatatablesManaged = function () {
     var oTable;
     var initTable = function () {
-        // begin: third table
         oTable = $('#myTable')
             .dataTable(
                 {
@@ -14,29 +13,8 @@ var TableDatatablesManaged = function () {
                     "bAutoWidth" : false,
                     "jQueryUI" : false,
                     "ordering" : false,// 是否可以排序
-                    "sAjaxSource" : ctx+"/nmis/api/user/list",
+                    "sAjaxSource" : ctx+"/tom/api/user/list",
                     'fnServerParams' : function(aoData) {
-                        // var orgName = $("#orgname").val();
-                        // var patientName = $("#patientname").val();
-                        // var expertName = $("#expertname").val();
-                        // var sdate = $("#sdate").val();
-                        // var edate = $("#edate").val();
-                        // aoData.push({
-                        //     "name": "conditions['orgName']",
-                        //     "value": orgName
-                        // },{
-                        //     "name": "conditions['patientName']",
-                        //     "value": patientName
-                        // },{
-                        //     "name": "conditions['expertName']",
-                        //     "value": expertName
-                        // },{
-                        //     "name": "conditions['sdate']",
-                        //     "value": sdate
-                        // },{
-                        //     "name": "conditions['edate']",
-                        //     "value": edate
-                        // });
                     },
                     "language": {
                         "aria": {
@@ -63,7 +41,6 @@ var TableDatatablesManaged = function () {
                         { "data": "realName","bSortable": false,"sClass": "center" },
                         { "data": "mobile","bSortable": false,"sClass": "center" },
                         { "data": "orgName","bSortable": false,"sClass": "center" },
-                        { "data": "purpose","bSortable": false,"sClass": "center" },
                         { "data": "status","bSortable": false,"sClass": "center" },
                         { "data": "userId","bSortable": false,"sClass": "center" } ],
                     "createdRow" : function(row, data,
@@ -71,14 +48,14 @@ var TableDatatablesManaged = function () {
                         var userId = data.userId;
                         var operlook = '<a href="javascript:TableDatatablesManaged.onLook(\''+userId +'\')" class="btn btn-xs btn-default"><i class="fa fa-folder-open-o"></i> '
                             + '查看' + ' </a>';
-                        $('td', row).eq(7).addClass(
+                        $('td', row).eq(6).addClass(
                             "hidden-480").html(
                             operlook);
                         var status = data.status;
                         if(status == 0){
-                            $('td', row).eq(6).html("未启用");
+                            $('td', row).eq(5).html("未启用");
                         }else if(status == 1){
-                            $('td', row).eq(6).html("已启用");
+                            $('td', row).eq(5).html("已启用");
                         }
                     }
                 });
@@ -86,7 +63,7 @@ var TableDatatablesManaged = function () {
     }
 
     var onLook =  function onLook(userId){
-        window.location.href=ctx+"/nmis/user/manage/detail/"+userId;
+        window.location.href=ctx+"/tom/user/manage/detail/"+userId;
     }
 
     return {

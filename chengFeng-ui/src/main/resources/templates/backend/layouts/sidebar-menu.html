@@ -17,14 +17,14 @@
         <!--<shiro:hasAnyRoles name="1">-->
 
         <li class="nav-item start">
-            <a th:href="@{/nmis/user/index}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/user/index}" class="nav-link nav-toggle">
                 <i class="fa fa-home"></i>
                 <span class="title">首页</span>
             </a>
         </li>
         <shiro:hasPermission name="manage_account">
         <li class="nav-item start">
-            <a th:href="@{/nmis/user/manage}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/user/manage}" class="nav-link nav-toggle">
                 <i class="fa fa-home"></i>
                 <span class="title">账号管理</span>
             </a>
@@ -33,7 +33,7 @@
 
         <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
         <li class="nav-item">
-            <a th:href="@{/nmis/apply/}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/apply/}" class="nav-link nav-toggle">
                 <i class="fa fa-hospital-o"></i>
                 <span class="title">资质申请</span>
             </a>
@@ -41,7 +41,7 @@
         </shiro:hasAnyPermissions>
         <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
         <li class="nav-item">
-            <a th:href="@{/nmis/nmStaff/}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/nmStaff/}" class="nav-link nav-toggle">
                 <i class="fa fa-anchor"></i>
                 <span class="title">科室与人员管理</span>
             </a>
@@ -56,43 +56,43 @@
             </a>
         <ul class="sub-menu">
             <li class="nav-item" >
-                <a th:href="@{/nmis/nmInquiry/}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/nmInquiry/}" class="nav-link nav-toggle">
                     <i class="fa fa-user-md"></i>
                     <span class="title">患者信息</span>
                 </a>
             </li>
             <li class="nav-item" >
-                <a th:href="@{/nmis/nmInquiry/}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/nmInquiry/}" class="nav-link nav-toggle">
                     <i class="fa fa-h-square"></i>
                     <span class="title">问诊记录</span>
                 </a>
             </li>
             <li class="nav-item" >
-                <a th:href="@{/nmis/nmPrescription/index}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/nmPrescription/index}" class="nav-link nav-toggle">
                     <i class="fa fa-plus-square"></i>
                     <span class="title">处方记录</span>
                 </a>
             </li>
 	        <li class="nav-item" >
-	            <a th:href="@{/nmis/nmTeleconsultation/}" class="nav-link nav-toggle">
+	            <a th:href="@{/tom/nmTeleconsultation/}" class="nav-link nav-toggle">
 	                <i class="fa fa-header"></i>
 	                <span class="title">远程会诊记录</span>
 	            </a>
 	        </li>
         <li class="nav-item">
-            <a th:href="@{/nmis/nmRadiology/}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/nmRadiology/}" class="nav-link nav-toggle">
                 <i class="fa fa-image"></i>
                 <span class="title">远程影像记录</span>
             </a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/nmis/nmEcg/}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/nmEcg/}" class="nav-link nav-toggle">
                 <i class="fa fa-heart"></i>
                 <span class="title">远程心电记录</span>
             </a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/nmis/nmPathology/}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/nmPathology/}" class="nav-link nav-toggle">
                 <i class="fa fa-search"></i>
                 <span class="title">远程病理记录</span>
             </a>
@@ -102,7 +102,7 @@
         </shiro:hasAnyPermissions>
         <shiro:hasPermission name="approve_ihos">
         <li class="nav-item">
-            <a th:href="@{/nmis/apply/examine}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/apply/examine}" class="nav-link nav-toggle">
                 <i class="fa fa-shield"></i>
                 <span class="title">准入审核</span>
             </a>
@@ -110,7 +110,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="view_all_ihos">
             <li class="nav-item">
-                <a th:href="@{/nmis/apply/examine}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/apply/examine}" class="nav-link nav-toggle">
                     <i class="fa fa-heart"></i>
                     <span class="title">备案查阅</span>
                 </a>
@@ -125,37 +125,37 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/medication}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/medication}" class="nav-link nav-toggle">
                         <i class="fa fa-heart"></i>
                         <span class="title">问诊记录</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/complaint}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/complaint}" class="nav-link nav-toggle">
                         <i class="fa fa-ambulance"></i>
                         <span class="title">处方记录</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
                         <i class="fa fa-file"></i>
                         <span class="title">远程会诊记录</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
                         <i class="fa fa-file"></i>
                         <span class="title">远程病理记录</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
                         <i class="fa fa-file"></i>
                         <span class="title">远程影像记录</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/nmis/quality/unhealthy}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
                         <i class="fa fa-file"></i>
                         <span class="title">远程心电记录</span>
                     </a>
@@ -173,32 +173,32 @@
         <ul class="sub-menu">
             <shiro:hasAnyPermissions name="statistic_area,statistic_all">
             <li class="nav-item">
-                <a th:href="@{/nmis/statistics/byOrg}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/statistics/byOrg}" class="nav-link nav-toggle">
                     <i class="fa fa-user-md"></i>
                     <span class="title">机构与人员统计</span>
                 </a>
             </li>
             </shiro:hasAnyPermissions>
             <li class="nav-item">
-                <a th:href="@{/nmis/statistics/byTime}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/statistics/byTime}" class="nav-link nav-toggle">
                     <i class="fa fa-database"></i>
                     <span class="title">时间统计</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/nmis/statistics/byDoctor}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/statistics/byDoctor}" class="nav-link nav-toggle">
                     <i class="fa fa-hospital-o"></i>
                     <span class="title">人员统计</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/nmis/statistics/byDrug}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/statistics/byDrug}" class="nav-link nav-toggle">
                     <i class="fa fa-plus-square"></i>
                     <span class="title">药品统计</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/nmis/statistics/byAppraise}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/statistics/byAppraise}" class="nav-link nav-toggle">
                     <i class="fa fa-hand-o-right"></i>
                     <span class="title">评价统计</span>
                 </a>
@@ -209,7 +209,7 @@
 
         <shiro:hasPermission name="manage_notice">
         <li class="nav-item">
-            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">通知公告</span>
             </a>
@@ -217,7 +217,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="report_accident">
         <li class="nav-item">
-            <a th:href="@{/nmis/quality/unhealthy/report}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/quality/unhealthy/report}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">不良事件上报</span>
             </a>
@@ -225,7 +225,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="reply_accident">
         <li class="nav-item">
-            <a th:href="@{/nmis/quality/unhealthy/list}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/quality/unhealthy/list}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">不良事件批复</span>
             </a>
@@ -233,7 +233,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="handle_complaint">
         <li class="nav-item">
-            <a th:href="@{/nmis/quality/complaint}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/quality/complaint}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">投诉处理</span>
             </a>
@@ -241,7 +241,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="config_system">
         <li class="nav-item">
-            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">系统设置</span>
             </a>
@@ -249,7 +249,7 @@
         </shiro:hasPermission>
         <shiro:hasPermission name="view_supervise_rule">
         <li class="nav-item">
-            <a th:href="@{/nmis/exhibition/toExhibition}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
                 <i class="fa fa-list-alt"></i>
                 <span class="title">监管规则</span>
             </a>
@@ -278,7 +278,7 @@
             $("a").each(function () {
             	//当前页面中配置的a标签的href属性的路径
                 var v = $(this).attr("href");
-            	if(d_url == '/nmis/nmOrgInfo/detail/10086'){
+            	if(d_url == '/tom/nmOrgInfo/detail/10086'){
             		if (d_url == v) {
 	                    $(this).parents('.nav-item ').addClass("active open");
 	                    $(".nav-link").append('<span class="selected"></span>');
