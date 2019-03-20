@@ -2,6 +2,10 @@ server:
   port: 8821
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 200MB
   application:
     name: rbac-provider-server
   # 数据源配置
@@ -50,9 +54,6 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
