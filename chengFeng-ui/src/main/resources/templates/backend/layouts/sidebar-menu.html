@@ -22,7 +22,7 @@
                 <span class="title">首页</span>
             </a>
         </li>
-        <shiro:hasPermission name="manage_account">
+        <shiro:hasPermission name="tom">
         <li class="nav-item start">
             <a th:href="@{/tom/user/manage}" class="nav-link nav-toggle">
                 <i class="fa fa-home"></i>
@@ -31,230 +31,47 @@
         </li>
         </shiro:hasPermission>
 
-        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
-        <li class="nav-item">
-            <a th:href="@{/tom/apply/}" class="nav-link nav-toggle">
-                <i class="fa fa-hospital-o"></i>
-                <span class="title">资质申请</span>
-            </a>
-        </li>
-        </shiro:hasAnyPermissions>
-        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
-        <li class="nav-item">
-            <a th:href="@{/tom/nmStaff/}" class="nav-link nav-toggle">
-                <i class="fa fa-anchor"></i>
-                <span class="title">科室与人员管理</span>
-            </a>
-        </li>
-        </shiro:hasAnyPermissions>
-        <shiro:hasAnyPermissions name="apply_new_ihos,apply_second_name">
-        <li class="nav-item ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-hourglass"></i>
-                <span class="title">业务记录</span>
-                <span class="arrow"></span>
-            </a>
-        <ul class="sub-menu">
-            <li class="nav-item" >
-                <a th:href="@{/tom/nmInquiry/}" class="nav-link nav-toggle">
-                    <i class="fa fa-user-md"></i>
-                    <span class="title">患者信息</span>
-                </a>
-            </li>
-            <li class="nav-item" >
-                <a th:href="@{/tom/nmInquiry/}" class="nav-link nav-toggle">
-                    <i class="fa fa-h-square"></i>
-                    <span class="title">问诊记录</span>
-                </a>
-            </li>
-            <li class="nav-item" >
-                <a th:href="@{/tom/nmPrescription/index}" class="nav-link nav-toggle">
-                    <i class="fa fa-plus-square"></i>
-                    <span class="title">处方记录</span>
-                </a>
-            </li>
-	        <li class="nav-item" >
-	            <a th:href="@{/tom/nmTeleconsultation/}" class="nav-link nav-toggle">
-	                <i class="fa fa-header"></i>
-	                <span class="title">远程会诊记录</span>
-	            </a>
-	        </li>
-        <li class="nav-item">
-            <a th:href="@{/tom/nmRadiology/}" class="nav-link nav-toggle">
-                <i class="fa fa-image"></i>
-                <span class="title">远程影像记录</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a th:href="@{/tom/nmEcg/}" class="nav-link nav-toggle">
-                <i class="fa fa-heart"></i>
-                <span class="title">远程心电记录</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a th:href="@{/tom/nmPathology/}" class="nav-link nav-toggle">
-                <i class="fa fa-search"></i>
-                <span class="title">远程病理记录</span>
-            </a>
-        </li>
-        </ul>
-        </li>
-        </shiro:hasAnyPermissions>
-        <shiro:hasPermission name="approve_ihos">
-        <li class="nav-item">
-            <a th:href="@{/tom/apply/examine}" class="nav-link nav-toggle">
-                <i class="fa fa-shield"></i>
-                <span class="title">准入审核</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="view_all_ihos">
-            <li class="nav-item">
-                <a th:href="@{/tom/apply/examine}" class="nav-link nav-toggle">
-                    <i class="fa fa-heart"></i>
-                    <span class="title">备案查阅</span>
-                </a>
-            </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="supervise_business">
-        <li class="nav-item">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-balance-scale"></i>
-                <span class="title">业务监管</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/medication}" class="nav-link nav-toggle">
-                        <i class="fa fa-heart"></i>
-                        <span class="title">问诊记录</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/complaint}" class="nav-link nav-toggle">
-                        <i class="fa fa-ambulance"></i>
-                        <span class="title">处方记录</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
-                        <i class="fa fa-file"></i>
-                        <span class="title">远程会诊记录</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
-                        <i class="fa fa-file"></i>
-                        <span class="title">远程病理记录</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
-                        <i class="fa fa-file"></i>
-                        <span class="title">远程影像记录</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/tom/quality/unhealthy}" class="nav-link nav-toggle">
-                        <i class="fa fa-file"></i>
-                        <span class="title">远程心电记录</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasAnyPermissions name="statistic_self,statistic_area,statistic_all">
+        <shiro:hasAnyPermissions name="study,tom">
         <li class="nav-item ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-bar-chart"></i>
-                <span class="title">业务统计</span>
+                <span class="title">学习</span>
                 <span class="arrow"></span>
             </a>
         <ul class="sub-menu">
-            <shiro:hasAnyPermissions name="statistic_area,statistic_all">
-            <li class="nav-item">
-                <a th:href="@{/tom/statistics/byOrg}" class="nav-link nav-toggle">
-                    <i class="fa fa-user-md"></i>
-                    <span class="title">机构与人员统计</span>
-                </a>
+            <shiro:hasAnyPermissions name="js_study,tom">
+                <li class="nav-item">
+                    <a th:href="@{/tom/statistics/byTime}" class="nav-link nav-toggle">
+                        <i class="fa fa-database"></i>
+                        <span class="title">Js学习</span>
+                    </a>
+                </li>
+            </shiro:hasAnyPermissions>
+            <shiro:hasAnyPermissions name="java_study,tom">
+                <li class="nav-item">
+            <a th:href="@{/tom/statistics/byOrg}" class="nav-link nav-toggle">
+            <i class="fa fa-user-md"></i>
+            <span class="title">Java学习</span>
+            </a>
             </li>
             </shiro:hasAnyPermissions>
-            <li class="nav-item">
-                <a th:href="@{/tom/statistics/byTime}" class="nav-link nav-toggle">
-                    <i class="fa fa-database"></i>
-                    <span class="title">时间统计</span>
-                </a>
-            </li>
+            <shiro:hasAnyPermissions name="python_study,tom">
             <li class="nav-item">
                 <a th:href="@{/tom/statistics/byDoctor}" class="nav-link nav-toggle">
                     <i class="fa fa-hospital-o"></i>
-                    <span class="title">人员统计</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a th:href="@{/tom/statistics/byDrug}" class="nav-link nav-toggle">
-                    <i class="fa fa-plus-square"></i>
-                    <span class="title">药品统计</span>
+                    <span class="title">Python学习</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a th:href="@{/tom/statistics/byAppraise}" class="nav-link nav-toggle">
                     <i class="fa fa-hand-o-right"></i>
-                    <span class="title">评价统计</span>
+                    <span class="title">其他学习</span>
                 </a>
             </li>
         </ul>
         </li>
         </shiro:hasAnyPermissions>
 
-        <shiro:hasPermission name="manage_notice">
-        <li class="nav-item">
-            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">通知公告</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="report_accident">
-        <li class="nav-item">
-            <a th:href="@{/tom/quality/unhealthy/report}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">不良事件上报</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="reply_accident">
-        <li class="nav-item">
-            <a th:href="@{/tom/quality/unhealthy/list}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">不良事件批复</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="handle_complaint">
-        <li class="nav-item">
-            <a th:href="@{/tom/quality/complaint}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">投诉处理</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="config_system">
-        <li class="nav-item">
-            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">系统设置</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="view_supervise_rule">
-        <li class="nav-item">
-            <a th:href="@{/tom/exhibition/toExhibition}" class="nav-link nav-toggle">
-                <i class="fa fa-list-alt"></i>
-                <span class="title">监管规则</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
     </ul>
 
     <!-- END SIDEBAR MENU -->
