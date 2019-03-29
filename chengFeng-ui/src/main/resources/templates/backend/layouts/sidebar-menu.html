@@ -41,7 +41,7 @@
         <ul class="sub-menu">
             <shiro:hasAnyPermissions name="js_study,tom">
                 <li class="nav-item">
-                    <a th:href="@{/tom/statistics/byTime}" class="nav-link nav-toggle">
+                    <a th:href="@{/tom/study/js}" class="nav-link nav-toggle">
                         <i class="fa fa-database"></i>
                         <span class="title">Js学习</span>
                     </a>
@@ -49,7 +49,7 @@
             </shiro:hasAnyPermissions>
             <shiro:hasAnyPermissions name="java_study,tom">
                 <li class="nav-item">
-            <a th:href="@{/tom/statistics/byOrg}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/study/java}" class="nav-link nav-toggle">
             <i class="fa fa-user-md"></i>
             <span class="title">Java学习</span>
             </a>
@@ -57,15 +57,21 @@
             </shiro:hasAnyPermissions>
             <shiro:hasAnyPermissions name="python_study,tom">
             <li class="nav-item">
-                <a th:href="@{/tom/statistics/byDoctor}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/study/python}" class="nav-link nav-toggle">
                     <i class="fa fa-hospital-o"></i>
                     <span class="title">Python学习</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/tom/statistics/byAppraise}" class="nav-link nav-toggle">
+                <a th:href="@{/tom/study/else}" class="nav-link nav-toggle">
                     <i class="fa fa-hand-o-right"></i>
                     <span class="title">其他学习</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/tom/study/mistake}" class="nav-link nav-toggle">
+                    <i class="fa fa-hand-o-right"></i>
+                    <span class="title">错误记录</span>
                 </a>
             </li>
         </ul>

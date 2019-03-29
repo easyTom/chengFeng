@@ -84,7 +84,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSuccessUrl(this.shiroProperties.getSuccessUrl2());
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/static/**","anon");
-        filterChainDefinitionMap.put("/nmis/**","user");
+        filterChainDefinitionMap.put("/tom/**","user");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
