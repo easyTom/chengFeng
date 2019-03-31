@@ -90,7 +90,7 @@
             <!-- END EXAMPLE TABLE PORTLET-->
             <!-- 显示全部内容窗口 -->
             <div id="textModal" style="display: none;margin: auto;" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true;">
-                <div class="modal-dialog" style="width: 50%;">
+                <div class="modal-dialog" style="width: 80%;">
                     <div class="modal-content" id="text">
 
                     </div>
@@ -98,7 +98,7 @@
             </div>
             <!-- 添加模态框 -->
             <div id="addModal" style="display: none;margin: auto;" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true;">
-                <div class="modal-dialog" style="width: 50%;">
+                <div class="modal-dialog" style="width: 80%;">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -114,7 +114,7 @@
                                                     <div class="col-md-2">
                                                          <label class="control-label">关键词<span class="required" aria-required="true">*</span></label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-10">
                                                           <input type="text" id="name" name="name" class="form-control">
                                                     </div>
                                                 </div>
@@ -124,8 +124,8 @@
                                                     <div class="col-md-2">
                                                         <label class="control-label">内容<span class="required" aria-required="true">*</span></label>
                                                     </div>
-                                                    <div class="col-md-8">
-                                                         <textarea style="resize: none;overflow: auto" rows="4" id="content" name="content" class="form-control"></textarea>
+                                                    <div class="col-md-10">
+                                                        <script id="editor" type="text/plain"  name="content" ></script>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +134,7 @@
                                                     <div class="col-md-2">
                                                        <label class="control-label">分类</label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-10">
                                                         <select class="form-control" id="type" name="type" aria-invalid="false">
                                                             <option value="js错误">js错误</option>
                                                             <option value="css错误">css错误</option>
@@ -162,7 +162,7 @@
             </div>
             <!-- 修改模态框 -->
             <div  id="myModal" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
-                <div class="modal-dialog" style="width: 50%;">
+                <div class="modal-dialog" style="width: 80%;">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -178,7 +178,7 @@
                                                     <div class="col-md-2">
                                                         <label class="control-label">关键词<span class="required" aria-required="true">*</span></label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-10">
                                                         <input type="text" id="nameUpdate" name="name" class="form-control">
                                                     </div>
                                                 </div>
@@ -188,7 +188,7 @@
                                                     <div class="col-md-2">
                                                         <label class="control-label">内容<span class="required" aria-required="true">*</span></label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-10">
                                                         <textarea style="resize: none;overflow: auto" rows="4" id="contentUpdate" name="content" class="form-control"></textarea>
                                                     </div>
                                                 </div>
@@ -198,7 +198,7 @@
                                                     <div class="col-md-2">
                                                         <label class="control-label">分类</label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-10">
                                                         <select class="form-control" id="typeUpdate" name="type" aria-invalid="false">
                                                             <option value="js错误">js错误</option>
                                                             <option value="css错误">css错误</option>
@@ -228,12 +228,28 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div></div>
     <script th:src="@{/assets/global/plugins/moment.min.js}" type="text/javascript"></script>
     <link th:href="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css}" rel="stylesheet" type="text/css" />
     <script th:src="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js}" type="text/javascript"></script>
     <script th:src="@{/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
-    <script type="text/javascript"  th:src="@{/backend/study/mistake.js}"></script>
+    <!-- 顺序不能乱 -->
+    <script type="text/javascript" charset="utf-8"  th:src="@{/ueditor/ueditor.config.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/ueditor/ueditor.all.min.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/mistake.js}"></script>
+    <script>
+        var number = 0.8*document.body.clientWidth*5/6 - 76;
+        var ue = UE.getEditor('editor',{
+            initialFrameWidth:number,
+            imageUrl:"/ueditor/api/study/mistake/image",
+        });
+        //设置z-index大于模态窗的10050，否则ueditor的弹出框会被挡住。
+        ue.addListener('ready', function (editor) {
+            $(this.container).css('z-index', 11000);
+        });
+
+    </script>
 </section>
 </body>
 </html>

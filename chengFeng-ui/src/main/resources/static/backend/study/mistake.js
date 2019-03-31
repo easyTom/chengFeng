@@ -89,7 +89,6 @@ var TableDatatablesManaged = function () {
             "createdRow": function ( row, data, index ) {
                 var rid = data.id;
                 var content = data.content;
-                var updateAt = data.updateAt;
                 var important = data.important;
                 var html = "";
                 var showHtml = "";
@@ -185,7 +184,7 @@ var TableDatatablesManaged = function () {
         });
     }
     function getMistakesById(id) {
-        var url = ctx+'/tom/api/study/mistake/getMistakesById'+id;
+        var url = ctx+'/tom/api/study/mistake/'+id;
         request(url,'GET',null,function (response) {
             $("[name=id]").val(response.data.id);
             for(var key in response.data){
