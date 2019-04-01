@@ -176,7 +176,8 @@ var TableDatatablesManaged = function () {
                 var action = form.attr("action");
                 var method = form.attr("method");
                 var formData = new FormData(form[0]);
-
+                console.log(UE.getEditor('editor').getContent());
+                formData.append("content",UE.getEditor('editor').getContent());
                 request(action,method,formData,function(response){
                     window.location.reload();
                 });

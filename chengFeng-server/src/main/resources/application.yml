@@ -77,4 +77,4 @@ spring.thymeleaf:
 #文件保存前缀
 #nmis.files.path: D:/
 
-nmis.files.path: C:/
+tom.files.path: D:/fcFiles/

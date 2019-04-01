@@ -1,3 +1,4 @@
+/*
 package com.tom.cf.api;
 
 import com.alibaba.fastjson.JSONException;
@@ -30,14 +31,16 @@ public class Ok {
         ResponseUtils.renderJson(response, json.toString());
     }
 
-    /**
+    */
+/**
      * 验证是否能够上传
      *
      * @param request
      * @param typeStr
      * @return
      * @throws JSONException
-     */
+     *//*
+
     private JSONObject validateUpload(HttpServletRequest request, String typeStr) throws JSONException {
         JSONObject result = new JSONObject();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -52,3 +55,4 @@ public class Ok {
     }
 
 }
+*/
