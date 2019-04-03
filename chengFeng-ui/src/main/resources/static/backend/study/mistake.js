@@ -81,7 +81,7 @@ var TableDatatablesManaged = function () {
                 { "data": "updateAt","bSortable": false,"sClass": "text-center"},
                 { "data": "type","bSortable": true,"sClass": "text-left"},
                 { "data": "name","bSortable": false,"sClass": "text-center" },
-                { "data": "content","bSortable": false,"sClass": "text-center" },
+                { "data": "contentMin","bSortable": false,"sClass": "text-center" },
                 { "data": "userName","bSortable": false,"sClass": "text-center" },
                 { "data": "important","bSortable": false,"sClass": "text-center" },
                 { "data": "id","bSortable": false,"sClass": "text-center" },
@@ -92,16 +92,16 @@ var TableDatatablesManaged = function () {
                 var important = data.important;
                 var html = "";
                 var showHtml = "";
-                var contentHtml = "";
-                html+='<a onclick="javascript:TableDatatablesManaged.view(\''+rid+'\');" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> 修改 </a>';
+                $("#ccc").empty();
+                $("#ccc").html(content);
                 if(important == '1'){
                     showHtml = '<a href="javascript:TableDatatablesManaged.updateImportant(\''+rid+'\',0)" class="label label-sm label-success" > 是</a>';
                 }else if(important == '0'){
                     showHtml = '<a href="javascript:TableDatatablesManaged.updateImportant(\''+rid+'\',1)" class="label label-sm label-default" > 否</a>';
                 }
-                    contentHtml += '<span style="cursor:pointer" onclick="javascript:TableDatatablesManaged.showText(\''+content+'\')";>'+content+'</span>';
+                html+='<a onclick="javascript:TableDatatablesManaged.view(\''+rid+'\');" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> 修改 </a>';
+                html+='<a onclick="javascript:TableDatatablesManaged.showAllContent();" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> 修改 </a>';
                 $('td',row).eq(5).html(showHtml)
-                $('td',row).eq(3).html(contentHtml);
                 $('td',row).eq(6).html(html);
 
             }
@@ -176,8 +176,9 @@ var TableDatatablesManaged = function () {
                 var action = form.attr("action");
                 var method = form.attr("method");
                 var formData = new FormData(form[0]);
-                console.log(UE.getEditor('editor').getContent());
-                formData.append("content",UE.getEditor('editor').getContent());
+                //已经有了 再弄会重复的出现3个图片了就
+                //formData.append("content",UE.getEditor('editor').getContent());
+                formData.append("contentMin",UE.getEditor('editor').getContentTxt());
                 request(action,method,formData,function(response){
                     window.location.reload();
                 });
@@ -208,6 +209,10 @@ var TableDatatablesManaged = function () {
 
     function add() {
         $("#addModal").modal('show');
+    }
+
+    function showAllContent() {
+        $("#showAllContentModal").modal('show');
     }
 
     function showText(o) {
@@ -243,7 +248,8 @@ var TableDatatablesManaged = function () {
         request:request,
         updateImportant:updateImportant,
         showText:showText,
-        add:add
+        add:add,
+        showAllContent:showAllContent
     };
 }();
 

@@ -16,7 +16,7 @@ public interface StudyRepository extends JpaRepository<Mistake,String>,JpaSpecif
 
 
     @Modifying
-    @Query(value = "update Mistake m set m.updateAt=:#{#p.updateAt},m.content=:#{#p.content},m.count=:#{#p.count},m.type=:#{#p.type},m.name=:#{#p.name} where m.id = :#{#p.id}")
+    @Query(value = "update Mistake m set m.updateAt=:#{#p.updateAt},m.content=:#{#p.content},m.contentMin=:#{#p.contentMin},m.count=:#{#p.count},m.type=:#{#p.type},m.name=:#{#p.name} where m.id = :#{#p.id}")
     void update(@Param("p") Mistake m);
    /* @Query("select userId from User where userName=?1 and status = '1'")
     String findIdByUserName(String userName);
