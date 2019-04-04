@@ -92,15 +92,15 @@ var TableDatatablesManaged = function () {
                 var important = data.important;
                 var html = "";
                 var showHtml = "";
-                $("#ccc").empty();
-                $("#ccc").html(content);
                 if(important == '1'){
                     showHtml = '<a href="javascript:TableDatatablesManaged.updateImportant(\''+rid+'\',0)" class="label label-sm label-success" > 是</a>';
                 }else if(important == '0'){
                     showHtml = '<a href="javascript:TableDatatablesManaged.updateImportant(\''+rid+'\',1)" class="label label-sm label-default" > 否</a>';
                 }
-                html+='<a onclick="javascript:TableDatatablesManaged.view(\''+rid+'\');" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> 修改 </a>';
-                html+='<a onclick="javascript:TableDatatablesManaged.showAllContent();" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> 修改 </a>';
+                html+='<a onclick="javascript:TableDatatablesManaged.view(\''+rid+'\');" >修改 </a>';
+                html+='<a onclick="javascript:TableDatatablesManaged.del(\''+rid+'\');">删除 </a>';
+                html+='<a onclick="javascript:TableDatatablesManaged.showAllContent(this);">查看 </a>';
+                html+='<div class="modal-content" style="display: none;">'+content+'</div>';
                 $('td',row).eq(5).html(showHtml)
                 $('td',row).eq(6).html(html);
 
@@ -150,9 +150,6 @@ var TableDatatablesManaged = function () {
             rules: {
                 name: {
                     required: true
-                },
-                content: {
-                    required: true
                 }
             },
             errorPlacement: function (error, element) { // render error placement for each input type
@@ -173,12 +170,17 @@ var TableDatatablesManaged = function () {
             submitHandler: function (form1) {
                 success1.show();
                 error1.hide();
+                var formData = new FormData(form[0]);
+                if(ueUpdate.getContent() == '' && ue.getContent() ==''){
+                    formData.append("content","啥都没有！");
+                    formData.append("contentMin","啥都没有！");
+                }else{
+                    formData.append("contentMin",ue.getContentTxt()==''?ueUpdate.getContentTxt():ue.getContentTxt());
+                }
                 var action = form.attr("action");
                 var method = form.attr("method");
-                var formData = new FormData(form[0]);
                 //已经有了 再弄会重复的出现3个图片了就
                 //formData.append("content",UE.getEditor('editor').getContent());
-                formData.append("contentMin",UE.getEditor('editor').getContentTxt());
                 request(action,method,formData,function(response){
                     window.location.reload();
                 });
@@ -192,6 +194,7 @@ var TableDatatablesManaged = function () {
             for(var key in response.data){
                 $("#"+key+"Update").val(response.data[key])
             }
+            ueUpdate.setContent(response.data.content);
         });
 
     }
@@ -210,17 +213,26 @@ var TableDatatablesManaged = function () {
     function add() {
         $("#addModal").modal('show');
     }
+    function del(id) {
+        var url = ctx+'/tom/api/study/mistake/del';
+        var formData = new FormData();
+        formData.append("id",id);
+        var f = confirm("你确定要删除吗?");
+        if(!f){
+            return false;
+        }
+        TableDatatablesManaged.request(url,"post",formData,function(response){
+            oTable.fnClearTable(0);
+            oTable.fnDraw();
+        });
+    }
 
-    function showAllContent() {
+    function showAllContent(t) {
+        var content = $(t).next().html();
+        $("#showAll").empty();
+        $("#showAll").html(content);
         $("#showAllContentModal").modal('show');
     }
-
-    function showText(o) {
-        $("#text").empty();
-        $("#text").append("<p>"+o+"<p/>");
-        $("#textModal").modal('show');
-    }
-
 
     return {
         init: function () {
@@ -247,8 +259,8 @@ var TableDatatablesManaged = function () {
         },
         request:request,
         updateImportant:updateImportant,
-        showText:showText,
         add:add,
+        del:del,
         showAllContent:showAllContent
     };
 }();

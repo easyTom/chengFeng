@@ -61,11 +61,8 @@ spring:
 core.security.shiro:
   casServerUrlPrefix: http://localhost/bscsso
   casValidatorUrl: http://localhost/bscsso
-  casService: http://localhost:8080/cas
-  successUrl: http://localhost:8080/ui/frontend/login
-  casServerUrlPrefix2: http://localhost/bscsso
-  casService2: http://localhost:8080/cas
-  successUrl2: http://localhost:8080/nmis/apply/
+  casService: http://localhost:8821/cas
+  successUrl: http://localhost:8821/ui/frontend/login
   filterChainDefinitionMap:
     /static/**: anon
     /api/**: anon
@@ -75,6 +72,4 @@ core.security.shiro:
 spring.thymeleaf:
   cache: false
 #文件保存前缀
-#nmis.files.path: D:/
-
 tom.files.path: D:/fcFiles/

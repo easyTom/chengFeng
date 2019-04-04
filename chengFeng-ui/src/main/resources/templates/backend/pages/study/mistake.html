@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html  xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{backend/layouts/default}">
 
 <head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
@@ -88,14 +88,6 @@
                 </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
-            <!-- 显示全部纯文本内容窗口 -->
-            <div id="textModal" style="display: none;margin: auto;" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true;">
-                <div class="modal-dialog" style="width: 80%;">
-                    <div class="modal-content" id="text">
-
-                    </div>
-                </div>
-            </div>
             <!-- 添加模态框 -->
             <div id="addModal" style="display: none;margin: auto;" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true;">
                 <div class="modal-dialog" style="width: 80%;">
@@ -122,7 +114,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="col-md-2">
-                                                        <label class="control-label">纯文本内容<span class="required" aria-required="true">*</span></label>
+                                                        <label class="control-label">内容<span class="required" aria-required="true">*</span></label>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <script id="editor" type="text/plain"  name="content" ></script>
@@ -163,9 +155,8 @@
             <!-- 全部内容模态框 -->
 
             <div  id="showAllContentModal" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
-                <div class="modal-dialog" style="width: 80%;" >
-                    <div class="modal-content" id="ccc">
-                    </div>
+                <div class="modal-dialog" style="width: 80%" >
+                    <div class="modal-content" style="min-height: 400px" id="showAll"></div>
                 </div>
             </div>
             <!-- 修改模态框 -->
@@ -194,10 +185,10 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="col-md-2">
-                                                        <label class="control-label">纯文本内容<span class="required" aria-required="true">*</span></label>
+                                                        <label class="control-label">内容<span class="required" aria-required="true">*</span></label>
                                                     </div>
                                                     <div class="col-md-10">
-                                                        <textarea style="resize: none;overflow: auto" rows="4" id="contentUpdate" name="content" class="form-control"></textarea>
+                                                        <script id="editorUpdate" type="text/plain"  name="content" ></script>
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,13 +240,22 @@
     <script>
         var number = 0.8*document.body.clientWidth*5/6 - 76;
         var ue = UE.getEditor('editor',{
-            initialFrameWidth:number
+            initialFrameWidth:number,
+            initialFrameHeight:number*0.3
         });
         //设置z-index大于模态窗的10050，否则ueditor的弹出框会被挡住。
         ue.addListener('ready', function (editor) {
             $(this.container).css('z-index', 11000);
         });
-
+        var ueUpdate = UE.getEditor('editorUpdate',{
+            initialFrameWidth:number,
+            initialFrameHeight:number*0.3
+        });
+        //设置z-index大于模态窗的10050，否则ueditor的弹出框会被挡住。
+        ue.addListener('ready', function (ueUpdate) {
+            $(this.container).css('z-index', 11000);
+        });
+        console.log($("#userId").val())
     </script>
 </section>
 </body>

@@ -49,4 +49,10 @@ public class StudyService {
     public Optional<Mistake> getById(String id) {
         return studyRepository.findById(id);
     }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void del(Mistake m) {
+        studyRepository.delete(m);
+    }
 }
