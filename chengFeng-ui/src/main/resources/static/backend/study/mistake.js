@@ -81,7 +81,7 @@ var TableDatatablesManaged = function () {
                 { "data": "updateAt","bSortable": false,"sClass": "text-center"},
                 { "data": "type","bSortable": true,"sClass": "text-left"},
                 { "data": "name","bSortable": false,"sClass": "text-center" },
-                { "data": "contentMin","bSortable": false,"sClass": "text-center" },
+               // { "data": "contentMin","bSortable": false,"sClass": "text-center" },
                 { "data": "userName","bSortable": false,"sClass": "text-center" },
                 { "data": "important","bSortable": false,"sClass": "text-center" },
                 { "data": "id","bSortable": false,"sClass": "text-center" },
@@ -101,8 +101,8 @@ var TableDatatablesManaged = function () {
                 html+='<a onclick="javascript:TableDatatablesManaged.del(\''+rid+'\');">删除 </a>';
                 html+='<a onclick="javascript:TableDatatablesManaged.showAllContent(this);">查看 </a>';
                 html+='<div class="modal-content" style="display: none;">'+content+'</div>';
-                $('td',row).eq(5).html(showHtml)
-                $('td',row).eq(6).html(html);
+                $('td',row).eq(4).html(showHtml)
+                $('td',row).eq(5).html(html);
 
             }
         });

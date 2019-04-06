@@ -3,7 +3,9 @@ package com.tom.cf.core.service;
 import com.tom.cf.core.dao.config.WebUtil;
 import com.tom.cf.core.dao.repository.StudyRepository;
 import com.tom.cf.core.entity.Mistake;
+import com.tom.cf.core.utils.UeditorDelImgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,6 +20,8 @@ public class StudyService {
 
     @Autowired
     private StudyRepository studyRepository;
+    @Value("${tom.files.path}")
+    private String path;
 
     public Page<Mistake> findPageByUserid(Specification<Mistake> specification, Pageable pageable) {
         return studyRepository.findAll(specification, pageable);
@@ -53,6 +57,8 @@ public class StudyService {
 
     @Transactional(rollbackFor = Exception.class)
     public void del(Mistake m) {
+        Optional<Mistake> mm = studyRepository.findById(m.getId());
+        UeditorDelImgUtil.deleteImages(mm.get().getContent(),path);
         studyRepository.delete(m);
     }
 }
