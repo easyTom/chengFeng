@@ -2,6 +2,7 @@ package com.tom.cf.ui;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -10,12 +11,16 @@ public class StudyController {
 
     private static final String VIEW = "backend/pages/study/";
 
-    private static final String MISTAKE = VIEW+"mistake";
+    /*
+     * @Author: Tom     通用跳转
+     * @Date: 2019/4/9 13:52
+     */
 
-    @GetMapping("/mistake")
-    public String mistakeList() {
-        return MISTAKE;
+    @GetMapping("/{simple}")
+    public String simple(@PathVariable("simple") String simple) {
+        return VIEW+simple;
     }
+
 
 
 

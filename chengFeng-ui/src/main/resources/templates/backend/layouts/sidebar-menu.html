@@ -30,6 +30,14 @@
             </a>
         </li>
         </shiro:hasPermission>
+        <shiro:hasAnyPermissions name="tom,demo">
+        <li class="nav-item start">
+            <a th:href="@{/tom/study/example}" class="nav-link nav-toggle">
+                <i class="fa fa-tasks"></i>
+                <span class="title">各种Demo</span>
+            </a>
+        </li>
+        </shiro:hasAnyPermissions>
 
         <shiro:hasAnyPermissions name="study,tom">
         <li class="nav-item ">

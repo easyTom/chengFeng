@@ -42,6 +42,11 @@
             <groupId>com.github.theborakompanioni</groupId>
             <artifactId>thymeleaf-extras-shiro</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tom.study</groupId>
+            <artifactId>chengFeng-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
