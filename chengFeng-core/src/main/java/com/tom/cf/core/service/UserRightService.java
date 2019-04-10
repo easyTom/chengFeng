@@ -1,7 +1,7 @@
 package com.tom.cf.core.service;
 
 import com.tom.cf.core.dao.repository.UserRightRepository;
-import com.tom.cf.core.entity.UseRright;
+import com.tom.cf.core.entity.FcUserRright;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +18,8 @@ public class UserRightService {
         return nmUserRightRepository.findActionAliasByUserId(userId);
     }
 
-    public void insertOrUpdate(UseRright useRright){
-        nmUserRightRepository.save(useRright);
+    public void insertOrUpdate(FcUserRright fcUserRright){
+        nmUserRightRepository.save(fcUserRright);
     }
 
     @Transactional

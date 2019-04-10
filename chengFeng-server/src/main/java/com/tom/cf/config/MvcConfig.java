@@ -1,10 +1,14 @@
 package com.tom.cf.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * @method: 默认跳转首页
@@ -27,4 +31,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("file:"+path);
     }
 
+    //防止 The temporary upload location … is not valid
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setLocation("d://temp");
+        return factory.createMultipartConfig();
+
+    }
 }

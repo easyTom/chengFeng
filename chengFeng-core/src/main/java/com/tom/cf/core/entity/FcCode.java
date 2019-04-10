@@ -7,12 +7,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @method: Demo类
+ * @method:Code类
  */
 @Data
 @Entity
-@Table(name = "cf_demo")
-public class Example {
+@Table(name = "cf_code")
+public class FcCode {
     @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
     @GeneratedValue(generator = "jpa-uuid")
     @Id
@@ -25,16 +25,10 @@ public class Example {
     @Column(name = "user_name", length = 50, columnDefinition = "varchar(50) COMMENT 'Demo人姓名(冗余字段)'")
     private String userName;
 
-    @Column(name = "name", length = 50, columnDefinition = "varchar(50) COMMENT 'Demo关键词'")
-    private String name;
+    @Column(name = "title", length = 50, columnDefinition = "varchar(50) COMMENT '代码标题'")
+    private String title;
 
-    @Column(name = "fileName", length = 400, columnDefinition = "varchar(400) COMMENT '问题文件名'")
-    private String fileName;
-
-    @Column(name = "count", length = 10, columnDefinition = "int(10) default 0 COMMENT  '点击量'")
-    private Integer count;
-
-    @Column(name = "content", length = 400, columnDefinition = "varchar(400) COMMENT '大致内容'")
+    @Column(name = "content", length = 400, columnDefinition = "longtext COMMENT '内容或者base64图片'")
     private String content;
 
     @Column(name = "create_at",columnDefinition="datetime COMMENT '创建时间'")

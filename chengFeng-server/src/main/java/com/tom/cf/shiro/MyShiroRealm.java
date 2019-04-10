@@ -3,10 +3,7 @@ package com.tom.cf.shiro;
 import com.tom.cf.core.entity.User;
 import com.tom.cf.core.service.UserRightService;
 import com.tom.cf.core.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -45,9 +42,14 @@ public class MyShiroRealm extends AuthorizingRealm {
         //获取用户信息
         String name = authenticationToken.getPrincipal().toString();
         User user = nmUserService.findUserByUserName(name);
-        if (user == null) {
-            //这里返回后会报出对应异常
-            return null;
+        //账号不存在
+        if(user == null) {
+            throw new UnknownAccountException("账号或密码不正确");
+        }
+
+        //账号锁定
+        if(user.getStatus() == 0){
+            throw new LockedAccountException("账号已被锁定,请联系管理员");
         } else {
             //这里验证authenticationToken和simpleAuthenticationInfo的信息
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getPassword(), getName());

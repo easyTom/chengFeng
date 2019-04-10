@@ -4,7 +4,7 @@ import com.tom.cf.api.dto.AuthorityDTO;
 import com.tom.cf.api.dto.DataTableRequest;
 import com.tom.cf.api.dto.DataTableResponse;
 import com.tom.cf.api.dto.ResultDTO;
-import com.tom.cf.core.entity.UseRright;
+import com.tom.cf.core.entity.FcUserRright;
 import com.tom.cf.core.entity.User;
 import com.tom.cf.core.service.UserRightService;
 import com.tom.cf.core.service.UserService;
@@ -47,10 +47,10 @@ public class UserApi {
         nmUserService.insertOrupdateUser(authorityDTO.valueOf(authorityDTO));
         userRightService.DeleteByUserId(authorityDTO.getUserId());
         for (String authority : authorityDTO.getAuthority()) {
-            UseRright useRright = new UseRright();
-            useRright.setUserId(authorityDTO.getUserId());
-            useRright.setActionAlias(authority);
-            userRightService.insertOrUpdate(useRright);
+            FcUserRright fcUserRright = new FcUserRright();
+            fcUserRright.setUserId(authorityDTO.getUserId());
+            fcUserRright.setActionAlias(authority);
+            userRightService.insertOrUpdate(fcUserRright);
         }
         return res;
 

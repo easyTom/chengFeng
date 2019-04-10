@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "cf_user_right")
-public class UseRright {
+public class FcUserRright {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

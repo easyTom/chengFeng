@@ -2,7 +2,7 @@ package com.tom.cf.core.service;
 
 import com.tom.cf.core.dao.config.WebUtil;
 import com.tom.cf.core.dao.repository.StudyExampleRepository;
-import com.tom.cf.core.entity.Example;
+import com.tom.cf.core.entity.FcExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -22,12 +22,12 @@ public class StudyExampleService {
     @Value("${tom.files.path}")
     private String path;
 
-    public Page<Example> findPageByUserid(Specification<Example> specification, Pageable pageable) {
+    public Page<FcExample> findPageByUserid(Specification<FcExample> specification, Pageable pageable) {
         return studyRepository.findAll(specification, pageable);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void save(Example m) {
+    public void save(FcExample m) {
         m.setCreateAt(new Date());
         m.setUpdateAt(new Date());
         m.setUserId(WebUtil.getCurrentUser().getUserId());
@@ -37,24 +37,24 @@ public class StudyExampleService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void update(Example m) {
+    public void update(FcExample m) {
         m.setUpdateAt(new Date());
         studyRepository.update(m);
     }
 
-    public Optional<Example> getById(String id) {
+    public Optional<FcExample> getById(String id) {
         return studyRepository.findById(id);
     }
 
 
     @Transactional(rollbackFor = Exception.class)
-    public void del(Example m) {
-        Optional<Example> mm = studyRepository.findById(m.getId());
+    public void del(FcExample m) {
+        Optional<FcExample> mm = studyRepository.findById(m.getId());
         //删除文件
         studyRepository.delete(m);
     }
 
-    public Optional<Example> findByUserId(String id) {
+    public Optional<FcExample> findByUserId(String id) {
         return studyRepository.findById(id);
     }
 }

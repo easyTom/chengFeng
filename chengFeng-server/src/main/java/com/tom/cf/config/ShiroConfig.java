@@ -73,7 +73,14 @@ public class ShiroConfig {
         return auth;
     }
 
-
+    /**
+     * 常用过滤器：
+     * 	anon：无需认证
+     * 	authc：必须认证
+     * 	user：使用记住功能可以访问
+     * 	perms：必须得到资源权限
+     * 	role：必须获得橘色权限
+     */
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();

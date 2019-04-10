@@ -5,7 +5,7 @@ import com.tom.cf.api.dto.DataTableResponse;
 import com.tom.cf.api.dto.HttpCode;
 import com.tom.cf.api.dto.ResultDTO;
 import com.tom.cf.core.dao.config.WebUtil;
-import com.tom.cf.core.entity.Mistake;
+import com.tom.cf.core.entity.FcMistake;
 import com.tom.cf.core.service.StudyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class MistakeApi {
 
 
     @PostMapping(value = "del")
-    public ResponseEntity del(Mistake m) {
+    public ResponseEntity del(FcMistake m) {
         studyService.del(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
@@ -43,7 +43,7 @@ public class MistakeApi {
     }
 
     @PostMapping("/add")
-    public ResponseEntity save(Mistake m){
+    public ResponseEntity save(FcMistake m){
         studyService.save(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
@@ -51,7 +51,7 @@ public class MistakeApi {
     }
 
     @PostMapping(value = "/update")
-    public ResponseEntity update(Mistake m) {
+    public ResponseEntity update(FcMistake m) {
         studyService.update(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
@@ -59,7 +59,7 @@ public class MistakeApi {
     }
 
     @PostMapping(value = "updateImportant")
-    public ResponseEntity updateImportant(Mistake m) {
+    public ResponseEntity updateImportant(FcMistake m) {
         studyService.updateImportant(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
@@ -70,7 +70,7 @@ public class MistakeApi {
     public ResultDTO getMistakesById(@PathVariable("id") String id) {
         ResultDTO result = ResultDTO.newInstance();
         if (StringUtils.isNotBlank(id)) {
-            Optional<Mistake> notice = studyService.getById(id);
+            Optional<FcMistake> notice = studyService.getById(id);
             result.setData(notice.get());
         }
         result.setResultCode(HttpCode.OK);
@@ -81,7 +81,7 @@ public class MistakeApi {
     public DataTableResponse list(DataTableRequest dr) {
         Map<String, Object> conditions = dr.getConditions();
         Sort sort = new Sort(Sort.Direction.DESC, "important").and(new Sort(Sort.Direction.DESC, "updateAt"));//排序规则   多条件
-        Page<Mistake> page = studyService.findPageByUserid(new Specification<Mistake>() {
+        Page<FcMistake> page = studyService.findPageByUserid(new Specification<FcMistake>() {
             //root 里的是类里的属性
             @Override
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {

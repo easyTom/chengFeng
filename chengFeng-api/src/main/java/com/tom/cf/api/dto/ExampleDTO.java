@@ -2,7 +2,7 @@ package com.tom.cf.api.dto;
 
 import com.tom.cf.api.utils.FcFileUtil;
 import com.tom.cf.core.dao.config.WebUtil;
-import com.tom.cf.core.entity.Example;
+import com.tom.cf.core.entity.FcExample;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,8 +49,8 @@ public class ExampleDTO {
         return FcFileUtil.findFile(dir,"EXAMPLE",userId,fileName);
     }
 
-    public Example convert(){
-        Example e = new Example();
+    public FcExample convert(){
+        FcExample e = new FcExample();
         BeanUtils.copyProperties(this, e);
         return e;
     }

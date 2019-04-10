@@ -23,7 +23,7 @@
                         <a th:href="@{/tom/index}">首页</a>
                         <i class="fa fa-angle-right"></i>
                     <li>
-                        各种Demo
+                        各种知识点
                     </li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="fa fa-calendar"></i>
-                        <span class="caption-subject bold uppercase"> Demo列表</span>
+                        <span class="caption-subject bold uppercase"> 知识点列表</span>
                     </div>
                     <div class="actions">
                         <a  href="javascript:;" onclick="TableDatatablesManaged.add()" class="btn btn-info" value="">
@@ -44,8 +44,8 @@
                         <form class="form-inline" role="form" id="searchForm">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label">关键词：</label>
-                                    <input class="form-control input-small" id="cname" type="text">
+                                    <label class="control-label">标题：</label>
+                                    <input class="form-control input-small" id="title" type="text">
                                 </div>
 
                                 <label class="control-label">修改时间：</label>
@@ -70,10 +70,8 @@
                         <thead>
                         <tr>
                             <th> 更新时间</th>
-                            <th> 文件名</th>
-                            <th> 关键词 </th>
+                            <th> 标题</th>
                             <th> 发布者 </th>
-                            <th> 查看次数 </th>
                             <th> 操作 </th>
                         </tr>
                         </thead>
@@ -88,39 +86,31 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" id="tital" align="center">新增Demo</h4>
+                            <h4 class="modal-title" id="tital" align="center">新增知识点</h4>
                         </div>
                         <div class="portlet-body form">
-                            <form id="formAdd" th:action="@{/tom/api/study/example/add}" method="post" class="form-horizontal"  onsubmit="return false" >
+                            <form id="formAdd" th:action="@{/tom/api/study/code/add}" method="post" class="form-horizontal"  onsubmit="return false" >
                                 <div class="form-body">
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="col-md-2">
-                                                         <label class="control-label">关键词<span class="required" aria-required="true">*</span></label>
+                                                         <label class="control-label">标题<span class="required" aria-required="true">*</span></label>
                                                     </div>
                                                     <div class="col-md-10">
-                                                          <input type="text" id="name" name="name" class="form-control">
+                                                          <input type="text" id="title" name="title" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="col-md-2">
-                                                        <label class="control-label">文件<span class="required" aria-required="true">*</span></label>
+                                                        <label class="control-label">代码截图<span class="required" aria-required="true">*</span></label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <input accept=".doc,.docx,.pdf,.rar,.zip" type="file" id="fileNameFile" name="fileNameFile" >
+                                                        <input accept=".jpg,.png,.bmp" type="file" id="contentFile" name="contentFile" >
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-2">
-                                                    <label class="control-label">大致内容</label>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <textarea  rows="6" maxlength="1000" style="resize: none;overflow: auto" onkeydown="if(this.value.length>400) {event.returnValue=false}" id="content" name="content" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,62 +129,25 @@
                     </div>
                 </div>
             </div>
-            <!-- 修改模态框 -->
-            <div  id="myModal" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
-                <div class="modal-dialog" style="width: 80%;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" align="center">修改Demo</h4>
-                        </div>
-                        <div class="portlet-body form">
-                            <form id="formUpdate" th:action="@{/tom/api/study/example/update}" method="post" class="form-horizontal"  onsubmit="return false" >
-                                <div class="form-body">
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="col-md-2">
-                                                        <label class="control-label">关键词<span class="required" aria-required="true">*</span></label>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <input type="text" id="nameUpdate" name="name" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="col-md-2">
-                                                        <label class="control-label">大致内容</label>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <textarea  rows="6" maxlength="1000" style="resize: none;overflow: auto" onkeydown="if(this.value.length>400) {event.returnValue=false}" id="contentUpdate" name="content" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input name="id" type="hidden">
-                                    <button  type="submit" class="btn blue">
-                                        <i class="fa fa-check"></i> 保存
-                                    </button>
-                                    <button  type="button" onclick="back()" class="btn dark btn-outline">
-                                        取消
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+        </div>
+
+        <div id="showModal" style="display: none;margin: auto;" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true;">
+            <div class="modal-dialog" style="width: 80%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="tital" align="center">知识点图片</h4>
+                    </div>
+                    <div class="portlet-body form" id="base" align="center">
                     </div>
                 </div>
             </div>
-        </div></div>
+        </div>
     <script th:src="@{/assets/global/plugins/moment.min.js}" type="text/javascript"></script>
     <link th:href="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css}" rel="stylesheet" type="text/css" />
     <script th:src="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js}" type="text/javascript"></script>
     <script th:src="@{/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/example.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/code.js}"></script>
 </section>
 </body>
 </html>
