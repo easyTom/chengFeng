@@ -12,17 +12,18 @@ import java.util.Set;
 public class UserRightService {
 
     @Autowired
-    private UserRightRepository nmUserRightRepository;
+    private UserRightRepository userRightRepository;
 
     public Set<String> findActionAliasByUserId(String userId){
-        return nmUserRightRepository.findActionAliasByUserId(userId);
+        return userRightRepository.findActionAliasByUserId(userId);
     }
 
     public void insertOrUpdate(FcUserRright fcUserRright){
-        nmUserRightRepository.save(fcUserRright);
+        userRightRepository.save(fcUserRright);
     }
 
     @Transactional
     public void DeleteByUserId(String userId) {
+        userRightRepository.deleteById(userId);
     }
 }

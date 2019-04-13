@@ -31,10 +31,10 @@ public class FcMistake {
     @Column(name = "type", length = 50, columnDefinition = "varchar(50) COMMENT '问题类型'")
     private String type;
 
-    @Column(name = "content", length = 400, columnDefinition = "varchar(400) COMMENT '问题内容'")
+    @Column(name = "content", length = 400, columnDefinition = "longtext COMMENT '问题内容'")
     private String content;
 
-    @Column(name = "content_min", length = 400, columnDefinition = "varchar(400) COMMENT '问题纯文本内容'")
+    @Column(name = "content_min", length = 400, columnDefinition = "longtext COMMENT '问题纯文本内容'")
     private String contentMin;
 
     @Column(name = "count", length = 10, columnDefinition = "int(10) default 0 COMMENT  '点击量'")
