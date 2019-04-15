@@ -49,6 +49,9 @@ public class FcMistake {
     @Column(name = "update_at",columnDefinition="datetime COMMENT '修改时间'")
     private Date updateAt;
 
-
+    //name是本类   id是别的类的
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+    @JoinColumn(name="type", referencedColumnName="id", insertable=false, updatable=false)
+    private FcCol fcCol;
 
 }

@@ -1,5 +1,8 @@
 server:
   port: 8821
+  servlet:
+    session:
+      timeout: 36000s
 
 spring:
   servlet:
@@ -42,7 +45,7 @@ spring:
   jpa:
     hibernate:
       # 实体类有更新时，数据库表更新
-      # ddl-auto: updatesssssss
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true

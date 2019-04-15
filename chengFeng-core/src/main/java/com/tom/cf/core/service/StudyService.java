@@ -58,7 +58,9 @@ public class StudyService {
     @Transactional(rollbackFor = Exception.class)
     public void del(FcMistake m) {
         Optional<FcMistake> mm = studyRepository.findById(m.getId());
-        UeditorDelImgUtil.deleteImages(mm.get().getContent(),path);
+        if(mm.get().getContent()!=null){
+            UeditorDelImgUtil.deleteImages(mm.get().getContent(),path);
+        }
         studyRepository.delete(m);
     }
 }

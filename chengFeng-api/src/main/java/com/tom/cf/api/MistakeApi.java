@@ -90,6 +90,9 @@ public class MistakeApi {
                 if (StringUtils.isNotEmpty(type)) {
                     Predicate predicate = criteriaBuilder.like(root.get("type").as(String.class), "%" + type + "%");
                     list.add(predicate);
+                }else{
+                    Predicate predicate = criteriaBuilder.notEqual(root.get("type").as(String.class), "备忘录");
+                    list.add(predicate);
                 }
                 String content = (String) conditions.get("content");
                 if (StringUtils.isNotEmpty(content)) {
@@ -108,6 +111,7 @@ public class MistakeApi {
                     list.add(predicate);
                 }
                 Predicate predicate = criteriaBuilder.equal(root.get("userId").as(String.class), WebUtil.getCurrentUser().getUserId());
+
                 list.add(predicate);
                 Predicate[] ps = new Predicate[list.size()];
                 criteriaQuery.where(criteriaBuilder.and(list.toArray(ps)));

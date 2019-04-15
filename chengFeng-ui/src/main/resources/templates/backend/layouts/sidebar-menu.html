@@ -31,19 +31,54 @@
         </li>
         </shiro:hasPermission>
         <li class="nav-item start">
-            <a th:href="@{/tom/user/remember}" class="nav-link nav-toggle">
+            <a th:href="@{/tom/study/remember}" class="nav-link nav-toggle">
                 <i class="fa fa-calendar"></i>
                 <span class="title">备忘录</span>
             </a>
         </li>
-        <shiro:hasPermission name="tom">
-        <li class="nav-item start">
-            <a th:href="@{/tom/user/sys}" class="nav-link nav-toggle">
+        <li class="nav-item ">
+            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-cogs"></i>
-                <span class="title">系统说明</span>
+                <span class="title">系统设置</span>
+                <span class="arrow"></span>
             </a>
+            <ul class="sub-menu">
+                <li class="nav-item start">
+                    <a th:href="@{/tom/user/sys}" class="nav-link nav-toggle">
+                        <i class="fa fa-file-text"></i>
+                        <span class="title">系统说明</span>
+                    </a>
+                </li>
+                <shiro:hasPermission name="tom">
+                <li class="nav-item">
+                    <a th:href="@{/tom/study/col}" class="nav-link nav-toggle">
+                        <i class="fa fa-columns"></i>
+                        <span class="title">分类管理</span>
+                    </a>
+                </li>
+                </shiro:hasPermission>
+            </ul>
         </li>
-        </shiro:hasPermission>
+
+        <shiro:hasAnyPermissions name="tom,play">
+            <li class="nav-item ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-gamepad"></i>
+                    <span class="title">娱乐</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <shiro:hasAnyPermissions name="tom,game">
+                        <li class="nav-item start">
+                            <a th:href="@{/tom/game/saolei}" class="nav-link nav-toggle">
+                                <i class="fa fa-smile-o"></i>
+                                <span class="title">扫雷</span>
+                            </a>
+                        </li>
+                    </shiro:hasAnyPermissions>
+                </ul>
+            </li>
+        </shiro:hasAnyPermissions>
         <shiro:hasAnyPermissions name="study,tom">
         <li class="nav-item ">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -61,7 +96,7 @@
                 </li>
             </shiro:hasAnyPermissions>
             <!--<shiro:hasAnyPermissions name="js_study,tom">
-                <li class="nav-item">
+                <li class="nav-aitem">
                     <a th:href="@{/tom/study/js}" class="nav-link nav-toggle">
                         <i class="fa fa-database"></i>
                         <span class="title">Js学习</span>
@@ -92,13 +127,13 @@
             <li class="nav-item">
                 <a th:href="@{/tom/study/code}" class="nav-link nav-toggle">
                     <i class="fa fa-th-list"></i>
-                    <span class="title">各种知识点</span>
+                    <span class="title">各种截图</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a th:href="@{/tom/study/mistake}" class="nav-link nav-toggle">
-                    <i class="fa fa-hand-o-right"></i>
-                    <span class="title">错误记录</span>
+                    <i class="fa fa-bug"></i>
+                    <span class="title">知识点及错误记录</span>
                 </a>
             </li>
         </ul>

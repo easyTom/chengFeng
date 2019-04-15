@@ -21,6 +21,13 @@ var TableDatatablesManaged = function () {
     }
     var oTable;
     var initTable3 = function () {
+        request(ctx + "/tom/api/study/col/init","POST",null,function(response){
+            for(var i in response.data){
+                $("#type").append("<option value="+response.data[i].id+">"+response.data[i].name+"</option>");
+                $("#ctype").append("<option value="+response.data[i].id+">"+response.data[i].name+"</option>");
+            }
+        });
+
         var table = $('#MyTable');
         oTable = table.dataTable({
             "language": {
@@ -67,7 +74,7 @@ var TableDatatablesManaged = function () {
                     "name": "conditions['content']",
                     "value": content
                 },{
-                    "name": "conditions['ctype']",
+                    "name": "conditions['type']",
                     "value": ctype
                 },{
                     "name": "conditions['sdate']",
@@ -79,7 +86,7 @@ var TableDatatablesManaged = function () {
             },
             "aoColumns": [
                 { "data": "updateAt","bSortable": false,"sClass": "text-center"},
-                { "data": "type","bSortable": true,"sClass": "text-left"},
+                { "data": "fcCol.name","bSortable": true,"sClass": "text-left"},
                 { "data": "name","bSortable": false,"sClass": "text-center" },
                // { "data": "contentMin","bSortable": false,"sClass": "text-center" },
                 { "data": "userName","bSortable": false,"sClass": "text-center" },
@@ -188,13 +195,22 @@ var TableDatatablesManaged = function () {
         });
     }
     function getMistakesById(id) {
+        var tid = "";
         var url = ctx+'/tom/api/study/mistake/'+id;
+
         request(url,'GET',null,function (response) {
             $("[name=id]").val(response.data.id);
             for(var key in response.data){
                 $("#"+key+"Update").val(response.data[key])
             }
             ueUpdate.setContent(response.data.content);
+            tid = response.data.type;
+        });
+        request(ctx + "/tom/api/study/col/init","POST",null,function(response){
+            for(var i in response.data){
+                var flag = tid == response.data[i].id?"selected":"";
+                $("#typeUpdate").append("<option value="+response.data[i].id+" "+flag+"  >"+response.data[i].name+"</option>");
+            }
         });
 
     }

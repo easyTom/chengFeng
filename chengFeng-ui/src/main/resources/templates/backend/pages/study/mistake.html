@@ -45,7 +45,9 @@
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label">分类：</label>
-                                    <input class="form-control input-small" id="ctype" type="text">
+                                    <select class="form-control" id="ctype" name="type" aria-invalid="false">
+                                        <option></option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">内容：</label>
@@ -129,12 +131,8 @@
                                                     <div class="col-md-2">
                                                        <label class="control-label">分类</label>
                                                     </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-10" >
                                                         <select class="form-control" id="type" name="type" aria-invalid="false">
-                                                            <option value="js错误">js错误</option>
-                                                            <option value="css错误">css错误</option>
-                                                            <option value="java错误">java错误</option>
-                                                            <option value="其它错误">其它错误</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -202,10 +200,6 @@
                                                     </div>
                                                     <div class="col-md-10">
                                                         <select class="form-control" id="typeUpdate" name="type" aria-invalid="false">
-                                                            <option value="js错误">js错误</option>
-                                                            <option value="css错误">css错误</option>
-                                                            <option value="java错误">java错误</option>
-                                                            <option value="其它错误">其它错误</option>
                                                         </select>
                                                     </div>
                                                 </div>
