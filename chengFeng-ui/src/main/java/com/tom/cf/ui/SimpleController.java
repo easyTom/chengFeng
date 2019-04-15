@@ -1,16 +1,17 @@
 package com.tom.cf.ui;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+@Controller
 @RequestMapping("/tom")
 public class SimpleController {
 
-    private static final String APPLY_INDEX="backend/pages/apply/apply_index";
+    private static final String INDEX = "backend/pages/index";
 
-    @GetMapping("")
+    @GetMapping("/index")
     public String index(){
-        return APPLY_INDEX;
+        return INDEX;
     }
 
 }
