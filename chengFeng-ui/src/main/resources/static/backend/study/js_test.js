@@ -39,3 +39,16 @@ function test3() {
     $(document.getElementById("t3")).show();
     $(document.getElementById("t2")).hide();
 }
+//演示动画
+$(function () {
+    $("#donghua div").click(function () {
+        if($(this).hasClass("red")){
+            $(this)
+                .animate({left:120})
+                .animate({left:240})
+                .animate({left:0})
+                .animate({left:240})
+                .animate({left:120});
+        }
+    });
+})

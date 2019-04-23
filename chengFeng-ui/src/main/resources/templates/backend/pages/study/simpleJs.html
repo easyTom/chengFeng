@@ -91,33 +91,94 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <!-- END EXAMPLE TABLE PORTLET-->
-            <div  id="m0" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
-                <div class="modal-dialog" style="width: 80%" >
-                    <div class="modal-content" style="min-height: 400px;padding: 20px">
-                        <p>ID选择器会对参数字符串进行解析执行效率比document那种差很多</p>
-                        <p>id="a.b"  获取：$("#a\\.b")     id="[div]" 获取：$("#\\[div\\]")因为JQ用正则匹配参数。而document不用考虑转义</p>
-                        <p>层级选择器：
+                <div  id="m0" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
+                    <div class="modal-dialog" style="width: 80%" >
+                        <div class="modal-content" style="min-height: 400px;padding: 20px">
+                            <p>ID选择器会对参数字符串进行解析执行效率比document那种差很多</p>
+                            <p>id="a.b"  获取：$("#a\\.b")     id="[div]" 获取：$("#\\[div\\]")因为JQ用正则匹配参数。而document不用考虑转义</p>
+                            <p>层级选择器：
                             <ul>
-                              <li>包含选择器  A BB 表示匹配A下所有BB</li>
-                              <li>子选择器  A>BB 表示匹配A下子类BB</li>
-                              <li>相邻选择器  A+BB 表示匹配跟着A后面的BB</li>
-                              <li>兄弟选择器  A~BB 表示匹配A同辈的BB</li>
+                                <li>包含选择器  A BB 表示匹配A下所有BB</li>
+                                <li>子选择器  A>BB 表示匹配A下子类BB</li>
+                                <li>相邻选择器  A+BB 表示匹配跟着A后面的BB</li>
+                                <li>兄弟选择器  A~BB 表示匹配A同辈的BB</li>
                             </ul>
-                        </p>
-                        <p>子元素选择器：
+                            </p>
+                            <p>子元素选择器：
                             <ul>
-                              <li>包含选择器  A BB 表示匹配A下所有BB</li>
-                              <li>子选择器  A>BB 表示匹配A下子类BB</li>
-                              <li>相邻选择器  A+BB 表示匹配跟着A后面的BB</li>
-                              <li>兄弟选择器  A~BB 表示匹配A同辈的BB</li>
+                                <li>:nth-child(N/even/odd) 父元素的 第N/偶/奇元素</li>
+                                <li>:first/last-child 父元素的第一/最后一 个子元素</li>
+                                <li>:only-child 如果谁是父元素唯一子元素才会被匹配</li>
                             </ul>
-                        </p>
-                        <p></p>
+                            </p>
+                            <p>定位过滤器：
+                            <ul>
+                                <li>:first/:last/:even/:odd 匹配第一个/最后一个/偶数索引行135/奇数索引行246</li>
+                                <li>:eq/:gt/:lt/:header 匹配等于/大于/索引的元素  匹配标题元素h1 h2 h3这种</li>
+                                <li>:not 去除匹配的元素  $("input:not(:checked)")所有没选中的input</li>
+                            </ul>
+                            </p>
+                            <p>内容过滤器：
+                            <ul>
+                                <li>:contains包含指定文本的元素</li>
+                                <li>:empty匹配空元素</li>
+                                <li>:has含有XXX元素的元素</li>
+                                <li>:parent含有子元素或者文本的元素</li>
+                            </ul>
+                            </p>
+                            <p>可见过滤器：
+                            <ul>
+                                <li>:hidden/:visible  所有 不可见/可见 的元素</li>
+                            </ul>
+                            </p>
+                            <p>属性选择器：
+                            <ul>
+                                <li>X[XXX] 含有XXX属性的X元素</li>
+                                <li>X[XXX=?] X元素的XXX属性是?的元素</li>
+                                <li>XXX和=之前  !/^/$/*  属性 不是/以开头/以结尾/包含</li>
+                                <li>X[XXX][XXXXX] 同时满足多个条件</li>
+                            </ul>
+                            </p>
+                            <p>选择器最快的是ID → 类型 最慢是Class 因为得内核外递归</p>
+                            <p>
+                                选择多个不同条件的元素 一个class为红一个为蓝
+                                document.querySelectorAll("li.red,li.blue");
+                                方法：querySelectorAll所有   querySelector第一个
+                            </p>
+                            <!-- DTD规定块级元素是不能放在P里;P标签内包含块元素时，它会先结束自己 -->
+                           <!-- <p style="display: block;height: 200px;width: 80%;position: relative;">-->
+                                <div id="donghua" style="position: relative;width: 80%;height: 100px;" >
+                                    <div class="red" style="width: 100px;height: 100px;background:red;position: absolute;z-index: 2;left: 120px;"></div>
+                                    <div style="width: 100px;height: 100px;background: #0d6aad;position: absolute;left: 0px"></div>
+                                    <div style="width: 100px;height: 100px;background: #00a65a;position: absolute;left: 360px"></div>
+                                    <div style="width: 100px;height: 100px;background: #1AA094;position: absolute;left: 240px"></div>
+                                </div>
+                            <!--</p>-->
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                            <p>1231</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+
             <div  id="m1" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
                 <div class="modal-dialog" style="width: 80%" >
                     <div class="modal-content" style="min-height: 400px;padding: 20px">
@@ -159,7 +220,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/js_test.js}"></script>
 </section>
+<script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/js_test.js}"></script>
 </body>
 </html>
