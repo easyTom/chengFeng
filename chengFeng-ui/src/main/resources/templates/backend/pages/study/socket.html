@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+</head>
+
+<body>
+<section layout:fragment="content">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+    name:<input id="name">
+          <button id="connect" type="button">连接</button>
+          <button id="disconnect" style="display: none;" type="button">断开连接</button>
+
+        <div id="chat" style="display: none;"></div>
+    内容:<input id="contentText">
+            <button id="send" type="button">发送</button>
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <div id="test"></div>
+            <div id="conversation" style="display: none;">群聊中......</div>
+
+
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a th:href="@{/tom/index}">首页</a>
+                        <i class="fa fa-angle-right"></i>
+                    <li>
+                        多人聊天
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-calendar"></i>
+                        <span class="caption-subject bold uppercase"> 多人聊天</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+
+            <div  id="showAllContentModal" class="modal fade" role="dialog"  tabindex="-1" aria-hidden="true" style="margin: auto;">
+                <div class="modal-dialog" style="width: 80%" >
+                    <div class="modal-content" style="min-height: 400px;padding: 20px" id="showAll"></div>
+                </div>
+            </div>
+        </div></div>
+        <script type="text/javascript" charset="utf-8"  th:src="@{/util/websocket/sockjs.min.js}"></script>
+        <script type="text/javascript" charset="utf-8"  th:src="@{/util/websocket/stomp.min.js}"></script>
+        <script type="text/javascript" charset="utf-8"  th:src="@{/util/websocket/my.js}"></script>
+        <script>
+
+    </script>
+</section>
+</body>
+</html>

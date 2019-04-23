@@ -44,7 +44,7 @@ public class MistakeApi {
 
     @PostMapping("/add")
     public ResponseEntity save(FcMistake m){
-        studyService.save(m);
+            studyService.save(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
         return ResponseEntity.ok(result);

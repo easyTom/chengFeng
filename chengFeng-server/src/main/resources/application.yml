@@ -60,6 +60,10 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  #自定义缓存配置文件目录
+  #cache:
+  #  ehcache:
+  #    config: classpath:
 
 core.security.shiro:
   casServerUrlPrefix: http://localhost/bscsso
@@ -79,4 +83,3 @@ tom.files.path: D:/fcFiles/
 logging:
   file: chengFeng.log
   path: D:/log/
-

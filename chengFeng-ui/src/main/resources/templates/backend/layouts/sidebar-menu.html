@@ -22,43 +22,88 @@
                 <span class="title">首页</span>
             </a>
         </li>
-        <shiro:hasPermission name="tom">
-        <li class="nav-item start">
-            <a th:href="@{/tom/user/manage}" class="nav-link nav-toggle">
-                <i class="fa fa-user"></i>
-                <span class="title">账号管理</span>
-            </a>
-        </li>
-        </shiro:hasPermission>
         <li class="nav-item start">
             <a th:href="@{/tom/study/remember}" class="nav-link nav-toggle">
                 <i class="fa fa-calendar"></i>
                 <span class="title">备忘录</span>
             </a>
         </li>
-        <li class="nav-item ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-cogs"></i>
-                <span class="title">系统设置</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item start">
-                    <a th:href="@{/tom/user/sys}" class="nav-link nav-toggle">
-                        <i class="fa fa-file-text"></i>
-                        <span class="title">系统说明</span>
+
+        <shiro:hasAnyPermissions name="study,tom">
+            <li class="nav-item ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-bar-chart"></i>
+                    <span class="title">学习</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <shiro:hasAnyPermissions name="tom,demo">
+                        <li class="nav-item start">
+                            <a th:href="@{/tom/study/example}" class="nav-link nav-toggle">
+                                <i class="fa fa-stack-overflow"></i>
+                                <span class="title">各种Demo</span>
+                            </a>
+                        </li>
+                    </shiro:hasAnyPermissions>
+                    <!--<shiro:hasAnyPermissions name="js_study,tom">
+                        <li class="nav-aitem">
+                            <a th:href="@{/tom/study/js}" class="nav-link nav-toggle">
+                                <i class="fa fa-database"></i>
+                                <span class="title">Js学习</span>
+                            </a>
+                        </li>
+                    </shiro:hasAnyPermissions>
+                    <shiro:hasAnyPermissions name="java_study,tom">
+                        <li class="nav-item">
+                    <a th:href="@{/tom/study/java}" class="nav-link nav-toggle">
+                    <i class="fa fa-user-md"></i>
+                    <span class="title">Java学习</span>
                     </a>
-                </li>
-                <shiro:hasPermission name="tom">
-                <li class="nav-item">
-                    <a th:href="@{/tom/study/col}" class="nav-link nav-toggle">
-                        <i class="fa fa-columns"></i>
-                        <span class="title">分类管理</span>
-                    </a>
-                </li>
-                </shiro:hasPermission>
-            </ul>
-        </li>
+                    </li>
+                    </shiro:hasAnyPermissions>
+                    <shiro:hasAnyPermissions name="python_study,tom">
+                    <li class="nav-item">
+                        <a th:href="@{/tom/study/python}" class="nav-link nav-toggle">
+                            <i class="fa fa-hospital-o"></i>
+                            <span class="title">Python学习</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/tom/study/else}" class="nav-link nav-toggle">
+                            <i class="fa fa-hand-o-right"></i>
+                            <span class="title">其他学习</span>
+                        </a>
+                    </li>-->
+                    <li class="nav-item">
+                        <a th:href="@{/tom/study/code}" class="nav-link nav-toggle">
+                            <i class="fa fa-th-list"></i>
+                            <span class="title">各种截图</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/tom/study/mistake}" class="nav-link nav-toggle">
+                            <i class="fa fa-bug"></i>
+                            <span class="title">知识点及错误记录</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="title">Js学习</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item">
+                                <a th:href="@{/tom/study/simpleJs}" class="nav-link nav-toggle">
+                                    <i class="fa fa-bug"></i>
+                                    <span class="title">Js基础笔记</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </shiro:hasAnyPermissions>
 
         <shiro:hasAnyPermissions name="tom,play">
             <li class="nav-item ">
@@ -76,70 +121,48 @@
                             </a>
                         </li>
                     </shiro:hasAnyPermissions>
+                    <li class="nav-item start">
+                        <a th:href="@{/tom/study/socket}" class="nav-link nav-toggle">
+                            <i class="fa fa-smile-o"></i>
+                            <span class="title">聊天</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </shiro:hasAnyPermissions>
-        <shiro:hasAnyPermissions name="study,tom">
+
+
         <li class="nav-item ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-bar-chart"></i>
-                <span class="title">学习</span>
+                <i class="fa fa-cogs"></i>
+                <span class="title">系统管理</span>
                 <span class="arrow"></span>
             </a>
-        <ul class="sub-menu">
-            <shiro:hasAnyPermissions name="tom,demo">
+            <ul class="sub-menu">
+                <shiro:hasPermission name="tom">
+                    <li class="nav-item start">
+                        <a th:href="@{/tom/user/manage}" class="nav-link nav-toggle">
+                            <i class="fa fa-user"></i>
+                            <span class="title">账号管理</span>
+                        </a>
+                    </li>
+                </shiro:hasPermission>
                 <li class="nav-item start">
-                    <a th:href="@{/tom/study/example}" class="nav-link nav-toggle">
-                        <i class="fa fa-stack-overflow"></i>
-                        <span class="title">各种Demo</span>
+                    <a th:href="@{/tom/user/sys}" class="nav-link nav-toggle">
+                        <i class="fa fa-file-text"></i>
+                        <span class="title">系统说明</span>
                     </a>
                 </li>
-            </shiro:hasAnyPermissions>
-            <!--<shiro:hasAnyPermissions name="js_study,tom">
-                <li class="nav-aitem">
-                    <a th:href="@{/tom/study/js}" class="nav-link nav-toggle">
-                        <i class="fa fa-database"></i>
-                        <span class="title">Js学习</span>
-                    </a>
-                </li>
-            </shiro:hasAnyPermissions>
-            <shiro:hasAnyPermissions name="java_study,tom">
-                <li class="nav-item">
-            <a th:href="@{/tom/study/java}" class="nav-link nav-toggle">
-            <i class="fa fa-user-md"></i>
-            <span class="title">Java学习</span>
-            </a>
-            </li>
-            </shiro:hasAnyPermissions>
-            <shiro:hasAnyPermissions name="python_study,tom">
-            <li class="nav-item">
-                <a th:href="@{/tom/study/python}" class="nav-link nav-toggle">
-                    <i class="fa fa-hospital-o"></i>
-                    <span class="title">Python学习</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a th:href="@{/tom/study/else}" class="nav-link nav-toggle">
-                    <i class="fa fa-hand-o-right"></i>
-                    <span class="title">其他学习</span>
-                </a>
-            </li>-->
-            <li class="nav-item">
-                <a th:href="@{/tom/study/code}" class="nav-link nav-toggle">
-                    <i class="fa fa-th-list"></i>
-                    <span class="title">各种截图</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a th:href="@{/tom/study/mistake}" class="nav-link nav-toggle">
-                    <i class="fa fa-bug"></i>
-                    <span class="title">知识点及错误记录</span>
-                </a>
-            </li>
-        </ul>
+                <shiro:hasPermission name="tom">
+                    <li class="nav-item">
+                        <a th:href="@{/tom/study/col}" class="nav-link nav-toggle">
+                            <i class="fa fa-columns"></i>
+                            <span class="title">分类管理</span>
+                        </a>
+                    </li>
+                </shiro:hasPermission>
+            </ul>
         </li>
-        </shiro:hasAnyPermissions>
-
     </ul>
 
     <!-- END SIDEBAR MENU -->

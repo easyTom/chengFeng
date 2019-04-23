@@ -4,6 +4,8 @@
 	<diskStore path="../chengFeng/ehcache" />
 
 	<!-- 默认缓存配置. 自动失效：最后一次访问时间间隔300秒失效，若没有访问过自创建时间600秒失效。-->
+	<!-- eternal:缓存是否永久有效  maxEntriesLocalHeap:堆内存中最大缓存对象数,0没有限制(必须设置) -->
+	<!-- timeToIdleSeconds:当缓存闲置n秒后销毁  timeToLiveSeconds:当缓存存活n秒后销毁 statistics:得到缓存读取的命中次数 -->
 	<defaultCache maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600"
 		overflowToDisk="true" statistics="true"/>
 	
@@ -16,14 +18,6 @@
 	<cache name="cloudModalityServiceCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>
 	<cache name="cloudSiteMappingServiceCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>
 	
-	<!-- 内容管理模块缓存
-	<cache name="cmsCache" maxEntriesLocalHeap="1000" eternal="true" overflowToDisk="true" statistics="true"/>-->
-	
-    <!-- 简单页面缓存
-    <cache name="pageCachingFilter" maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="120"
-    	timeToLiveSeconds="120" overflowToDisk="true" memoryStoreEvictionPolicy="LFU" statistics="true"/>-->
-	
-	<!-- 系统活动会话缓存 -->
     <cache name="activeSessionsCache" maxEntriesLocalHeap="10000" eternal="true" overflowToDisk="true"
            diskPersistent="true" diskExpiryThreadIntervalSeconds="600" statistics="true"/>
     	
