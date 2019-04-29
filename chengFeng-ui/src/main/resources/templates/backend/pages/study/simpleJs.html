@@ -154,25 +154,47 @@
                                     <div style="width: 100px;height: 100px;background: #1AA094;position: absolute;left: 240px"></div>
                                 </div>
                             <!--</p>-->
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
-                            <p>1231</p>
+                            <p>XXX.eq(X)表示 获取第X+1个XXX元素</p>
+                            <p>.filter(XXX)过滤元素 用,分割   .not(XX)排除XX</p>
+                            <p>
+                                map(callback) 会在每个元素调用，并返回新的JQ
+                                例子：$("p").append($("input")<strong>.map(
+                                function(){return $(this).val()}).get().join(",")</strong>);
+                                );
+                            </p>
+                            <p>slice()截取 0开始 负数从后开始 包前不包后</p>
+                            <p>查找：
+                            <ul>
+                                <li>
+                                    向下查找：
+                                        DOM: childNodes/firstChild/childElementCount/firstElementChild
+                                             所有子节点、第一个子节点、子元素个数，第一个子元素
+                                        JQ: children(XX)/contents()/find(XX)  XX为过滤条件
+                                            所有子元素/子元素，文本节点等 跟 childNodes一样/所有后代元素
+                                </li>
+                                <li>
+                                    向上查找：
+                                        DOM:parentNode 父元素
+                                        JQ:
+                                            parents(XX) 祖先元素
+                                            parent(XX) 父元素
+                                            parentsUntil(XX) 部分祖先XX没有就是所有祖先
+                                </li>
+                                <li>
+                                    向前查找：
+                                        prev(XX)/prevAll(XX)/prevUntil(XX)
+                                        上一个兄弟，所有兄弟，直到XX的兄弟
+                                </li>
+                                <li>
+                                    同辈元素：
+                                        siblings(XX)所有同辈
+                                </li>
+                            </ul>
+                            </p>
+                            <p> add(XXxx) 添加到当前JQ里</p>
+                            <p>合并addBack() 将前后不同的JQ链接在一起</p>
+                            <p>end()返回操作之前匹配的JQ</p>
+
                         </div>
                     </div>
                 </div>
