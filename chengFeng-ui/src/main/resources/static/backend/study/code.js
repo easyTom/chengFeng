@@ -21,8 +21,9 @@ var TableDatatablesManaged = function () {
     }
     var oTable;
     var initTable3 = function () {
-        var table = $('#MyTable');
-        oTable = table.dataTable({
+        var table = $('#myTable');
+        //oTable = table.dataTable({   这玩意D大写就好使  d小写就有些方法不好使
+        oTable = table.DataTable({
             "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
@@ -88,7 +89,32 @@ var TableDatatablesManaged = function () {
         $("#btn_search").on('click',function(){
             oTable.fnDraw(false);
         })
+
+        //点击之后下面出现一行
+        $('#myTable tbody').on('click', 'td', function (event) {
+            if (this != event.target) return;
+            var tr = $(this).closest('tr');
+            var row = oTable.row(tr);
+            if (row.length == 0) {
+                return;
+            }
+            var eventData = {
+                row: row,
+                eventEle: this,
+                oTable: oTable
+            };
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                subrowControl.format(eventData);
+                tr.addClass('shown');
+            }
+        });
     }
+
 
 
     var request = function (url,method,data,success){
