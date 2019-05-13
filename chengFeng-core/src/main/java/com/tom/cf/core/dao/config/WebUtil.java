@@ -2,7 +2,6 @@ package com.tom.cf.core.dao.config;
 
 
 import com.tom.cf.core.entity.User;
-import com.tom.cf.core.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.InvalidSessionException;
@@ -68,6 +67,7 @@ public final class WebUtil {
     }
 
     /** 获取当前用户 */
+    //跟项目里的的不同因为返回的是user
     public static final User getCurrentUser() {
         Subject currentUser = SecurityUtils.getSubject();
         if (null != currentUser) {
@@ -76,8 +76,7 @@ public final class WebUtil {
                 if (null != session) {
                     User user =  (User)session.getAttribute(CURRENT_USER);
                     if(user == null){
-                        UserService service = SpringContextProvider.getBean("userService");
-                        user = service.findUserByUserName(currentUser.getPrincipal().toString());
+                        user = (User) currentUser.getPrincipal();
                         WebUtil.setSession(CURRENT_USER, user);
                     }
                     return user;

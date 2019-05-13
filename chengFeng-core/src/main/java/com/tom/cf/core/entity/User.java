@@ -5,12 +5,13 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "cf_user")
-public class User {
+public class User implements Serializable {
     @GenericGenerator(name="jpa-uuid", strategy="uuid")
     @GeneratedValue(generator = "jpa-uuid")
     @Id
@@ -20,7 +21,7 @@ public class User {
     @Column(name = "user_name",length = 50,columnDefinition="varchar(50) COMMENT '用户名'")
     private String userName;
 
-    @Column(name = "password",length = 50,columnDefinition="varchar(50) COMMENT '密码'")
+    @Column(name = "password",length = 100,columnDefinition="varchar(100) COMMENT '密码'")
     private String password;
 
     @Column(name = "real_name",length = 20,columnDefinition="varchar(20) COMMENT '真实姓名'")
@@ -40,6 +41,9 @@ public class User {
 
     @Column(name = "memo",length = 100,columnDefinition="varchar(100) COMMENT '备注'")
     private String memo;
+
+    @Column(name = "salt",length = 100,columnDefinition="varchar(100) COMMENT '盐值'")
+    private String salt;
 
     @CreatedDate
     @Column(name = "created_at",columnDefinition="datetime COMMENT '创建时间'")

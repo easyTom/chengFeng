@@ -30,15 +30,15 @@
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" v-model="username" placeholder="账号">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-user form-control-feedback norequired"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" v-model="password" placeholder="密码">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <span class="glyphicon glyphicon-lock form-control-feedback norequired"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" v-model="captcha" @keyup.enter="login" placeholder="验证码">
-        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+        <span class="glyphicon glyphicon-warning-sign form-control-feedback norequired"></span>
       </div>
       <div class="form-group has-feedback">
         <img alt="如果看不清楚，请单击图片刷新！" class="pointer" :src="src" @click="refreshCode">
@@ -47,22 +47,22 @@
       
       
       <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-          </div>
-        </div>
         <!-- /.col -->
-        <div class="col-xs-4">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-danger btn-block btn-flat" @click="register">注册</button>
+        </div>
+        <div class="col-xs-6">
           <button type="button" class="btn btn-primary btn-block btn-flat" @click="login">登录</button>
         </div>
         <!-- /.col -->
       </div>
     <!-- /.social-auth-links -->
-
+      <div th:include="/frontend/sys_add_model :: up"></div>
   </div>
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+
     <script th:src="@{/login/fire.js}"></script>
     <script th:src="@{/login/jquery.min.js}"></script>
     <script th:src="@{/login/vue.min.js}"></script>
@@ -70,6 +70,8 @@
     <script th:src="@{/login/jquery.slimscroll.min.js}"></script>
     <script th:src="@{/login/fastclick.min.js}"></script>
     <script th:src="@{/login/app.js}"></script>
+    <script th:src="@{/backend/common/tomValidate.js}"></script>
+
 
 <script>
     var ctx = '[[@{/}]]';
@@ -77,12 +79,36 @@
 </script>
 <script type="text/javascript">
 
+ $(function () {
+     $(".glyphicon").prev("input").each(function () {
+         $(this).on('blur',function () {
+             if(!$(this).val() && $(this).next("span")[0].className.indexOf("norequired") == -1 ){
+                     $(this).css("border-color","#e73d4a");
+             }else{
+                 $(this).css("border-color","#d2d6de");
+             }
+         });
+     });
+ });
+
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
 		username: '',
 		password: '',
+		mobile: '',
+        realName: '',
+		msgUname: '',
+		msgMobile: '',
+		msgMemo: '',
+		msgUpwd: '',
+		msgUUpwd: '',
+		msgRealname: '',
+		memo: '',
 		captcha: '',
+        uname: '',
+        upwd: '',
+        uupwd: '',
 		error: false,
 		msg: '',
 		src: ctx + '/captcha.jpg'
@@ -113,7 +139,97 @@ var vm = new Vue({
 					}
 				}
 			});
-		}
+		},
+        register:function () {
+            $('#Modal').modal();
+        },
+        addUser:function () {
+		    var flag = true;
+            var data = "username="+vm.uname+"&password="+vm.upwd+"&memo="+vm.memo+"&mobile="+vm.mobile
+            +"&realName="+vm.realName;
+            var all = $(".glyphicon");
+            all.map(function () {
+                var className =  $(this)[0].className;
+                //获取用户输入的值
+                var value = $(this).prev("input").val();
+                //获取错误提示信息
+                var msgValue = $(this).next("span").text();
+                if(!value && className.indexOf("norequired") == -1 ){
+                        $(this).prev("input").css("border-color","#e73d4a");
+                        $("#h4").text("表单缺少必填项!");
+                        flag = false;
+                }else if(msgValue){
+                    flag = false;
+                    $("#h4").text("表单填写有误!");
+                }
+            });
+            if(flag) {
+                $.ajax({
+                    type: "POST",
+                    url: ctx + "/sys/addUser",
+                    data: data,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {//注册成功
+                            location.reload();
+                        } else {
+                            vm.error = true;
+                            vm.msg = result.msg;
+                        }
+                    }
+                });
+            }
+        },
+        back:function () {
+            $('#Modal').hide();
+        },
+        checkUname: () => {
+		    if(!tomValidate.v(vm.uname,tomValidate.vobj.loginName)){
+		        vm.msgUname  = '请输入4-8位的小写字母和数字的组合';
+            }else{
+                vm.msgUname = '';
+            }
+        },
+        checkRealname: () => {
+		    if(tomValidate.v(vm.realName,tomValidate.vobj.chinaName)){
+		        vm.msgRealname  = '请输入纯中文';
+            }else if(vm.realName.length>10){
+                vm.msgRealname  = '不能超过十个汉字';
+            }else{
+                vm.msgRealname = '';
+            }
+        },
+        checkMemo: () => {
+
+		    if(vm.memo.length>200 && vm.memo){
+		        vm.msgMemo  = '长度为200以内';
+            }else{
+                vm.msgMemo = '';
+            }
+        },
+        checkUpwd: () => {
+		    if(!tomValidate.v(vm.upwd,tomValidate.vobj.loginName)){
+		        vm.msgUpwd  = '请输入4-8位的小写字母和数字的组合';
+            }else{
+                vm.msgUpwd = '';
+            }
+        },
+        checkUUpwd: () => {
+		    if(vm.upwd != vm.uupwd){
+		        vm.msgUUpwd  = '两次密码不一致';
+            }else{
+                vm.msgUUpwd = '';
+            }
+        },
+        checkMobile: () => {
+
+		    if(!tomValidate.v(vm.mobile,tomValidate.vobj.mobile ) && vm.mobile){
+		        vm.msgMobile  = '请输入正确手机号';
+            }else{
+                vm.msgMobile = '';
+            }
+
+        },
 	}
 });
 </script>

@@ -7,7 +7,6 @@ var subrowControl = function () {
         var row = eventData.row;
         var rowData = row.data();
         //获得整行的数据
-        console.log(rowData)
         var id = rowData.id;
         var childEle = row.child(`<div class="row">
                        <div class="col-md-12">
@@ -20,14 +19,13 @@ var subrowControl = function () {
                                             <div class="portlet box green">
                                                 <div class="portlet-title">
                                                     <div class="caption">
-                                                        <i class="fa fa-gift"></i>心电图 </div>
+                                                        <i class="fa fa-gift"></i>心电 </div>
                                                 </div>
-                                                <div class="portlet-body">
+                                                <div class="portlet-body" style="height:230px!important;">
                                                         <div style="max-height:220px!important;overflow: hidden" class="spa_subrow pre-scrollable" id="seriesPics_${id}">
                                                         
 </div>
-                                                        <div class="col-md-6" id="seriesPics1_${id}"></div>
-                                                        <div class="col-md-6" id="seriesPics2_${id}"></div>
+                                                         <div class="col-md-12 text-center" id="seriesPics1_${id}" ></div>
                                                         <div style="clear:both;" ></div>
                                                 </div>
                                             </div>
@@ -38,9 +36,9 @@ var subrowControl = function () {
                                             <div class="portlet box purple">
                                                 <div class="portlet-title">
                                                     <div class="caption">
-                                                        <i class="fa fa-gift"></i>病例附件 </div>
+                                                        <i class="fa fa-gift"></i>附件 </div>
                                                 </div>
-                                                <div class="portlet-body" >
+                                                <div class="portlet-body"  style="height:230px!important;">
                                                     <div class="row bottom text-center" id="att_${id}" style="margin-bottom: 10px" >
                                                         
                                                     </div>
@@ -56,10 +54,10 @@ var subrowControl = function () {
                                             <div class="portlet box yellow">
                                                 <div class="portlet-title">
                                                     <div class="caption">
-                                                        <i class="fa fa-gift"></i>诊断报告 </div>
+                                                        <i class="fa fa-gift"></i>图片 </div>
                                                 </div>
-                                                <div class="portlet-body">
-                                                    <div style="max-height:220px!important;"class="row bottom text-center" id="spa_report_${id}">
+                                                <div class="portlet-body" style="height:230px!important;">
+                                                    <div style="max-height:220px!important;"class="row bottom text-center" id="spa_photo_${id}">
                                                         
                                                     </div>
                                                 </div>
@@ -70,10 +68,10 @@ var subrowControl = function () {
                                             <!-- BEGIN Portlet PORTLET-->                                            <div class="portlet box blue">
                                                 <div class="portlet-title">
                                                     <div class="caption">
-                                                        <i class="fa fa-gift"></i>视频咨询 </div>
+                                                        <i class="fa fa-gift"></i>其他 </div>
                                                 </div>
-                                                <div class="portlet-body">
-                                                    <div style="max-height:220px!important;"  class="row bottom text-center" id="spa_video_${id}">
+                                                <div class="portlet-body" style="height:230px!important;">
+                                                    <div style="max-height:220px!important;"  class="row bottom text-center" id="spa_other_${id}">
                                                     
                                                     </div>
                                                 </div>
@@ -87,9 +85,9 @@ var subrowControl = function () {
                         </div>
                     </div>`);
         childEle.show();
-          initAtt(rowData);
-          /*initEcg(rowData);
-          initReport(rowData);*/
+          //initAtt(rowData);
+          initEcg(rowData);
+          //initPhoto(rowData);
     }
 
     function initEcg(rowData) {
@@ -98,8 +96,8 @@ var subrowControl = function () {
     function initAtt(rowData) {
         spaSubRowAttControl.init(rowData);
     }
-    function initReport(rowData) {
-        spaSubRowReportControl.init(rowData);
+    function initPhoto(rowData) {
+        spaSubRowPhotoControl.init(rowData);
     }
 
     return {

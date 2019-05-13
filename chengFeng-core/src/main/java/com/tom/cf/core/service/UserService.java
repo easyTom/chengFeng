@@ -2,6 +2,8 @@ package com.tom.cf.core.service;
 
 import com.tom.cf.core.dao.repository.UserRepository;
 import com.tom.cf.core.entity.User;
+import com.tom.cf.core.utils.ShiroUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +22,12 @@ public class UserService {
         return userRepository.findIdByUserName(userName);
     }
 
-    public void insertUser(User nmUser){
-        userRepository.save(nmUser);
+    public void insertUser(User user){
+        //sha256加密
+        String salt = RandomStringUtils.randomAlphanumeric(20);
+        user.setSalt(salt);
+        user.setPassword(ShiroUtils.sha256(user.getPassword(), user.getSalt()));
+        userRepository.save(user);
     }
 
     public Page<User> findAll(Pageable pageable){
