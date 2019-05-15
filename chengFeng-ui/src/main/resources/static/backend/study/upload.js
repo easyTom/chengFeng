@@ -1,29 +1,10 @@
 var TableDatatablesManaged = function () {
 
-    var addDate = function () {
-        $("#sdate").datepicker({
-            rtl: App.isRTL(),
-            orientation: "left",
-            language: 'zh-CN',
-            format: 'yyyy-mm-dd',
-            endDate: new Date(),
-            autoclose: true
-        });
-
-        $("#edate").datepicker({
-            rtl: App.isRTL(),
-            orientation: "left",
-            language: 'zh-CN',
-            format: 'yyyy-mm-dd',
-            endDate: new Date(),
-            autoclose: true
-        });
-    }
     var oTable;
     var initTable3 = function () {
         var table = $('#myTable');
-        oTable = table.dataTable({   //这玩意D大写就好使，但是0那个不好使了  d小写就有些方法不好使
-        //oTable = table.DataTable({
+        //oTable = table.dataTable({   这玩意D大写就好使  d小写就有些方法不好使
+        oTable = table.DataTable({
             "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
@@ -53,43 +34,60 @@ var TableDatatablesManaged = function () {
             "pageLength": 10,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": ctx + "/tom/api/study/code/list",
+            "sAjaxSource": ctx + "/tom/api/study/upload/list",
             "sServerMethod": "POST",
             "fnServerParams": function ( aoData ) {
-                var title = $("#title").val();
-                var sdate = $("#sdate").val();
-                var edate = $("#edate").val();
+                var type = $("#typeName").val();
                 aoData.push({
-                    "name": "conditions['title']",
-                    "value": title
-                },{
-                    "name": "conditions['sdate']",
-                    "value": sdate
-                },{
-                    "name": "conditions['edate']",
-                    "value": edate
+                    "name": "conditions['type']",
+                    "value": type
                 });
             },
             "aoColumns": [
-                { "data": "updateAt","bSortable": false,"sClass": "text-center"},
-                { "data": "title","bSortable": false,"sClass": "text-center" },
-                { "data": "userName","bSortable": false,"sClass": "text-center" },
+                { "data": "fileName","bSortable": false,"sClass": "text-center"},
+                { "data": "type","bSortable": false,"sClass": "text-center" },
+                { "data": "fileSize","bSortable": false,"sClass": "text-center" },
                 { "data": "id","bSortable": false,"sClass": "text-center" },
             ],
             "createdRow": function ( row, data, index ) {
-                var c = data.content;
                 var rid = data.id;
+                var fileSize = data.fileSize;
+                fileSize = fileSize/1000;
+                $('td',row).eq(2).html(fileSize.toFixed(2)+"KB");
                 var html = "";
-                html+='<a onclick="javascript:TableDatatablesManaged.show(\''+c+'\');" >查看 </a>';
                 html+='<a onclick="javascript:TableDatatablesManaged.del(\''+rid+'\');">删除 </a>';
                 $('td',row).eq(3).html(html);
 
             }
         });
         $("#btn_search").on('click',function(){
-            oTable.fnDraw(false);
+            $('#myTable').dataTable().fnClearTable(0);
+            $('#myTable').dataTable().fnDraw();
         })
 
+        //点击之后下面出现一行
+        $('#myTable tbody').on('click', 'td', function (event) {
+            if (this != event.target) return;
+            var tr = $(this).closest('tr');
+            var row = oTable.row(tr);
+            if (row.length == 0) {
+                return;
+            }
+            var eventData = {
+                row: row,
+                eventEle: this,
+                oTable: oTable
+            };
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                subrowControl.format(eventData);
+                tr.addClass('shown');
+            }
+        });
     }
 
 
@@ -167,17 +165,8 @@ var TableDatatablesManaged = function () {
             }
         });
     }
-
-    function add() {
-        $("#addModal").modal('show');
-    }
-    function show(c) {
-        var content = '<img alt="" src="'+c+'" width="90%" height="90%" >';
-        $("#base").html(content);
-        $("#showModal").modal('show');
-    }
     function del(id) {
-        var url = ctx+'/tom/api/study/code/del';
+        var url = ctx+'/tom/api/study/upload/del';
         var formData = new FormData();
         formData.append("id",id);
         var f = confirm("你确定要删除吗?");
@@ -185,8 +174,8 @@ var TableDatatablesManaged = function () {
             return false;
         }
         TableDatatablesManaged.request(url,"post",formData,function(response){
-            oTable.fnClearTable(0);
-            oTable.fnDraw();
+            $('#myTable').dataTable().fnClearTable(0);
+            $('#myTable').dataTable().fnDraw();
         });
     }
 
@@ -197,7 +186,6 @@ var TableDatatablesManaged = function () {
                 return;
             }
             initTable3();
-            addDate();
         },
         initForm: function (button) {
             var formAdd = $("#formAdd");
@@ -206,8 +194,6 @@ var TableDatatablesManaged = function () {
             }
         },
         request:request,
-        add:add,
-        show:show,
         del:del,
     };
 }();

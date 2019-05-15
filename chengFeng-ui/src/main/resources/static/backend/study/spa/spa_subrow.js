@@ -11,7 +11,7 @@ var subrowControl = function () {
         var childEle = row.child(`<div class="row">
                        <div class="col-md-12">
                             <!-- BEGIN Portlet PORTLET-->
-                            <div class="portlet box red-sunglo">
+                            <div class="portlet box">
                                 <div class="portlet-body">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -36,13 +36,13 @@ var subrowControl = function () {
                                             <div class="portlet box purple">
                                                 <div class="portlet-title">
                                                     <div class="caption">
-                                                        <i class="fa fa-gift"></i>附件 </div>
+                                                        <i class="fa fa-gift"></i>图片 </div>
                                                 </div>
                                                 <div class="portlet-body"  style="height:230px!important;">
                                                     <div class="row bottom text-center" id="att_${id}" style="margin-bottom: 10px" >
                                                         
                                                     </div>
-                                                    <div style="max-height:220px!important;overflow-y: auto" class="spa_subrow pre-scrollable " id="spa_attchments_${id}">
+                                                    <div style="max-height:170px!important;overflow-y: auto" class="spa_subrow pre-scrollable " id="spa_photo_${id}">
                                                     
                                                     </div>
                                                 </div>
@@ -87,7 +87,7 @@ var subrowControl = function () {
         childEle.show();
           //initAtt(rowData);
           initEcg(rowData);
-          //initPhoto(rowData);
+          initPhoto(rowData);
     }
 
     function initEcg(rowData) {
