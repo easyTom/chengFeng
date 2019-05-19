@@ -45,4 +45,8 @@ public class StudyCodeService {
     public void del(FcCode m) {
         studyRepository.delete(m);
     }
+
+    public long getCount(){
+        return  studyRepository.count();
+    }
 }

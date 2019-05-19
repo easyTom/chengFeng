@@ -1,9 +1,13 @@
 package com.tom.cf.core.service;
 
 import com.tom.cf.core.dao.config.WebUtil;
+import com.tom.cf.core.dao.mapper.StudyMapper;
 import com.tom.cf.core.dao.repository.StudyRepository;
+import com.tom.cf.core.entity.FcCol;
 import com.tom.cf.core.entity.FcMistake;
+import com.tom.cf.core.entity.ResultTwo;
 import com.tom.cf.core.utils.UeditorDelImgUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -20,6 +24,8 @@ public class StudyService {
 
     @Autowired
     private StudyRepository studyRepository;
+    @Autowired
+    private StudyMapper sm;
     @Value("${tom.files.path}")
     private String path;
 
@@ -62,5 +68,15 @@ public class StudyService {
             UeditorDelImgUtil.deleteImages(mm.get().getContent(),path);
         }
         studyRepository.delete(m);
+    }
+
+    public ResultTwo getCount(String s) {
+        int indexCount = sm.getIndexCount(s);
+        FcCol fc = sm.getIdByName(s);
+        String id = "";
+        if(fc!=null){
+            id = fc.getId();
+        }
+        return new ResultTwo(id,indexCount);
     }
 }

@@ -33,8 +33,66 @@
 						<i class="fa fa-calendar"></i>欢迎进入tom技术学习系统
 					</div>
 				</div>
-
 			</div>
+				<div class="row">
+					<div  onclick="indexControl.go('jc')" class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+						<a  class="dashboard-stat dashboard-stat-light blue"  style="color:#404958;cursor:pointer;">
+							<div class="visual">
+								<!--左下角背景图标-->
+								<i class="fa fa-comments"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span data-counter="counterup" data-value="89235"  id="java">0</span>
+								</div>
+								<div class="desc">Java知识点</div>
+							</div>
+						</a>
+						<input type="hidden" id = "jc">
+					</div>
+					<div onclick="indexControl.go('mc')" class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+						<a class="dashboard-stat dashboard-stat-light red"   style="color:#404958;cursor:pointer;">
+							<div class="visual">
+								<i class="fa fa-archive"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span data-counter="counterup" data-value="89235"  id="mistake">0</span>
+								</div>
+								<div class="desc">错误记录</div>
+							</div>
+						</a>
+						<input type="hidden" id = "mc">
+					</div>
+					<div onclick="indexControl.go('rc')" class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+						<a   class="dashboard-stat dashboard-stat-light green"  style="color:#404958;cursor:pointer;">
+							<div class="visual">
+								<i class="fa fa-calendar-o"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span data-counter="counterup" data-value="89235"  id="remember">0</span>
+								</div>
+								<div class="desc">备忘录</div>
+							</div>
+						</a>
+						<input type="hidden" id = "rc">
+					</div>
+					<div  onclick="indexControl.go('photo')" class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+						<a  class="dashboard-stat dashboard-stat-light purple"  style="color:#404958;cursor:pointer;">
+							<div class="visual">
+								<i class="fa fa-git-square"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span data-counter="counterup" data-value="89235"  id="photo">0</span>
+								</div>
+								<div class="desc">各种截图</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
 			<!-- END EXAMPLE TABLE PORTLET-->
 			<!-- END PAGE CONTENT-->
 		</div>
@@ -42,7 +100,7 @@
 	<link type="text/css" rel="stylesheet" th:href="@{/assets/global/plugins/select2/css/select2.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/global/plugins/select2/css/select2-bootstrap.min.css}" />
     <script type="text/javascript"  th:src="@{/assets/global/plugins/select2/js/select2.js}"></script>
-    <script type="text/javascript"  th:src="@{/backend/registration/user_manage.js}"></script>
+    <script type="text/javascript"  th:src="@{/backend/registration/index.js}"></script>
 </section>
 </body>
 </html>

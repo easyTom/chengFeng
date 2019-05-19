@@ -19,6 +19,7 @@ var TableDatatablesManaged = function () {
             autoclose: true
         });
     }
+
     var oTable;
     var initTable3 = function () {
         request(ctx + "/tom/api/study/col/init","POST",null,function(response){
@@ -27,8 +28,9 @@ var TableDatatablesManaged = function () {
                 $("#ctype").append("<option value="+response.data[i].id+">"+response.data[i].name+"</option>");
             }
         });
-
         var table = $('#MyTable');
+        //获取storage
+        var result=window.localStorage;
         oTable = table.dataTable({
             "language": {
                 "aria": {
@@ -67,6 +69,10 @@ var TableDatatablesManaged = function () {
                 var ctype = $("#ctype").val();
                 var sdate = $("#sdate").val();
                 var edate = $("#edate").val();
+                console.log(result.type)
+                if(result.type ){
+                    ctype = result.type;
+                }
                 aoData.push({
                     "name": "conditions['name']",
                     "value": name
@@ -110,6 +116,9 @@ var TableDatatablesManaged = function () {
                 html+='<div class="modal-content" style="display: none;">'+content+'</div>';
                 $('td',row).eq(4).html(showHtml)
                 $('td',row).eq(5).html(html);
+                if(result){
+                    result.clear();
+                }
 
             }
         });

@@ -172,4 +172,14 @@ var tomUploadControl = function (o) {
 
     }
 }(123);
-//()内作为参数可以作为参数传入方法 w
+//()内作为参数可以作为参数传入方法
+$(function () {
+
+    $(document).mouseup(function(e){
+        var _con = $('.magnify-modal');   // 设置目标区域
+        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+            _con.hide();
+            $('html').css({ 'overflow': '', 'padding-right': 0 });
+        }
+    });
+})

@@ -83,3 +83,6 @@ tom.files.path: D:/fcFiles/
 logging:
   file: chengFeng.log
   path: D:/log/
+mybatis:
+  # type-aliases-package: com.tom.cf.core.entity
+  mapper-locations: classpath:mapper/*.xml

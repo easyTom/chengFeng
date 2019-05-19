@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.cf.core.dao.mapper.StudyMapper">
+    <select id="getIndexCount" resultType="int">
+        SELECT COUNT(1) FROM cf_mistake  m
+        JOIN cf_col c on m.type = c.id
+        WHERE c.name = #{name}
+    </select>
+
+    <select id="getIdByName" resultType="com.tom.cf.core.entity.FcCol">
+        SELECT id FROM cf_col
+        WHERE name = #{name}
+    </select>
+</mapper>

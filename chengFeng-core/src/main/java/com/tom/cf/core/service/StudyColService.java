@@ -1,5 +1,6 @@
 package com.tom.cf.core.service;
 
+import com.tom.cf.core.dao.mapper.StudyMapper;
 import com.tom.cf.core.dao.repository.StudyColRepository;
 import com.tom.cf.core.entity.FcCol;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class StudyColService {
     @Autowired
     private StudyColRepository studyRepository;
 
+    @Autowired
+    private StudyMapper sm;
 
     @Transactional(rollbackFor = Exception.class)
     public void save(FcCol m) {
