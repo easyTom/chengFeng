@@ -1,5 +1,5 @@
 
-var tomValidate = function () {
+var tomValidateControl = function () {
 
     //正则
     var RegExpObject  = {

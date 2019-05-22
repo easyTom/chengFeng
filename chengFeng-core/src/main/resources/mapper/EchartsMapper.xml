@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.cf.core.dao.mapper.EchartsMapper">
+    <select id="getZZData" resultType="com.tom.cf.core.entity.ResultTwo">
+        SELECT
+            count(1) count ,
+            cc. NAME id
+        FROM
+            cf_mistake cm
+            LEFT JOIN cf_col cc ON cm.type = cc.id
+        GROUP BY 	id
+        UNION
+        SELECT
+            COUNT(1) count,
+            '上传相关' id
+        from cf_upload
+        UNION
+        SELECT
+            COUNT(1) count,
+            '各种Demo' id from cf_demo
+        UNION
+        SELECT
+            COUNT(1) count,
+            '各种截图' id from cf_code
+        ORDER BY
+            count DESC
+        LIMIT 10
+    </select>
+    <select id="getZSData" resultType="com.tom.cf.core.entity.ResultTwo">
+        SELECT
+            count(1) count ,
+            DATE_FORMAT(create_at, '%Y-%m-%d') id
+        FROM
+            cf_mistake cm
+            LEFT JOIN cf_col cc ON cm.type = cc.id
+        GROUP BY 	id
+        ORDER BY
+            count DESC
+    </select>
+</mapper>

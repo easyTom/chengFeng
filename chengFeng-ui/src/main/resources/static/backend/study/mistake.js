@@ -69,7 +69,6 @@ var TableDatatablesManaged = function () {
                 var ctype = $("#ctype").val();
                 var sdate = $("#sdate").val();
                 var edate = $("#edate").val();
-                console.log(result.type)
                 if(result.type ){
                     ctype = result.type;
                 }

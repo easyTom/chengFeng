@@ -70,7 +70,7 @@
     <script th:src="@{/login/jquery.slimscroll.min.js}"></script>
     <script th:src="@{/login/fastclick.min.js}"></script>
     <script th:src="@{/login/app.js}"></script>
-    <script th:src="@{/backend/common/tomValidate.js}"></script>
+    <script th:src="@{/backend/common/tomValidateControl.js}"></script>
 
 
 <script>
@@ -184,14 +184,14 @@ var vm = new Vue({
             $('#Modal').hide();
         },
         checkUname: () => {
-		    if(!tomValidate.v(vm.uname,tomValidate.vobj.loginName)){
+		    if(!tomValidateControl.v(vm.uname,tomValidateControl.vobj.loginName)){
 		        vm.msgUname  = '请输入4-8位的小写字母和数字的组合';
             }else{
                 vm.msgUname = '';
             }
         },
         checkRealname: () => {
-		    if(tomValidate.v(vm.realName,tomValidate.vobj.chinaName)){
+		    if(tomValidateControl.v(vm.realName,tomValidateControl.vobj.chinaName)){
 		        vm.msgRealname  = '请输入纯中文';
             }else if(vm.realName.length>10){
                 vm.msgRealname  = '不能超过十个汉字';
@@ -208,7 +208,7 @@ var vm = new Vue({
             }
         },
         checkUpwd: () => {
-		    if(!tomValidate.v(vm.upwd,tomValidate.vobj.loginName)){
+		    if(!tomValidateControl.v(vm.upwd,tomValidateControl.vobj.loginName)){
 		        vm.msgUpwd  = '请输入4-8位的小写字母和数字的组合';
             }else{
                 vm.msgUpwd = '';
@@ -223,7 +223,7 @@ var vm = new Vue({
         },
         checkMobile: () => {
 
-		    if(!tomValidate.v(vm.mobile,tomValidate.vobj.mobile ) && vm.mobile){
+		    if(!tomValidateControl.v(vm.mobile,tomValidateControl.vobj.mobile ) && vm.mobile){
 		        vm.msgMobile  = '请输入正确手机号';
             }else{
                 vm.msgMobile = '';

@@ -179,6 +179,7 @@ $(function () {
         var _con = $('.magnify-modal');   // 设置目标区域
         if(!_con.is(e.target) && _con.has(e.target).length === 0){
             _con.hide();
+            //防止点击关闭 滚动条失效
             $('html').css({ 'overflow': '', 'padding-right': 0 });
         }
     });

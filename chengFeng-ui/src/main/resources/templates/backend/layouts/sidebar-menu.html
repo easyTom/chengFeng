@@ -32,7 +32,7 @@
         <shiro:hasAnyPermissions name="study,tom">
             <li class="nav-item ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-bar-chart"></i>
+                    <i class="fa fa-university"></i>
                     <span class="title">学习</span>
                     <span class="arrow"></span>
                 </a>
@@ -111,6 +111,35 @@
             </li>
         </shiro:hasAnyPermissions>
 
+        <shiro:hasAnyPermissions name="tom">
+            <li class="nav-item ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-bar-chart"></i>
+                    <span class="title">统计图</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                        <li class="nav-item start">
+                            <a th:href="@{/tom/study/chartZZ}" class="nav-link nav-toggle">
+                                <i class="fa fa-bar-chart"></i>
+                                <span class="title">柱状图</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start">
+                            <a th:href="@{/tom/study/chartBZ}" class="nav-link nav-toggle">
+                                <i class="fa fa-bar-chart"></i>
+                                <span class="title">饼状图</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start">
+                            <a th:href="@{/tom/study/chartZS}" class="nav-link nav-toggle">
+                                <i class="fa fa-bar-chart"></i>
+                                <span class="title">走势图</span>
+                            </a>
+                        </li>
+                </ul>
+            </li>
+        </shiro:hasAnyPermissions>
         <shiro:hasAnyPermissions name="tom,play">
             <li class="nav-item ">
                 <a href="javascript:;" class="nav-link nav-toggle">
