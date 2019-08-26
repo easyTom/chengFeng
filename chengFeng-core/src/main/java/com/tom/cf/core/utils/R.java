@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.tom.cf.api.utils;
+package com.tom.cf.core.utils;
 
 import java.util.HashMap;
 import java.util.Map;

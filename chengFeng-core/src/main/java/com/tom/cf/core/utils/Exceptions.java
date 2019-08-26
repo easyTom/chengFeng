@@ -1,4 +1,4 @@
-package com.tom.cf.api.utils;
+package com.tom.cf.core.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;

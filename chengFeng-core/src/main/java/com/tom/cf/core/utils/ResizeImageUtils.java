@@ -1,4 +1,4 @@
-package com.tom.cf.api.utils;
+package com.tom.cf.core.utils;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;

@@ -7,9 +7,6 @@ import org.springframework.util.StringUtils;
 import javax.annotation.PostConstruct;
 import java.util.Map;
 
-/**
- * Created by Roy on 2017-11-17.
- */
 @ConfigurationProperties(
         ignoreUnknownFields = false,
         prefix = "core.security.shiro"

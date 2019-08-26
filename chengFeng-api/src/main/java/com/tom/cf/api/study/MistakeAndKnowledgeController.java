@@ -1,4 +1,4 @@
-package com.tom.cf.api;
+package com.tom.cf.api.study;
 
 import com.tom.cf.api.dto.DataTableRequest;
 import com.tom.cf.api.dto.DataTableResponse;
@@ -28,7 +28,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/tom/api/study/mistake")
-public class MistakeApi {
+public class MistakeAndKnowledgeController {
 
     @Autowired
     public StudyService studyService;

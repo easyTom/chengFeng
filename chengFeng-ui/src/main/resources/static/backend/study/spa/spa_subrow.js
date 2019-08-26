@@ -88,6 +88,7 @@ var subrowControl = function () {
           //initAtt(rowData);
           initEcg(rowData);
           initPhoto(rowData);
+          tomMagnifyControl.init(false);
     }
 
     function initEcg(rowData) {

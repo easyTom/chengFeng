@@ -1,4 +1,4 @@
-package com.tom.cf.api.utils;
+package com.tom.cf.core.utils;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;

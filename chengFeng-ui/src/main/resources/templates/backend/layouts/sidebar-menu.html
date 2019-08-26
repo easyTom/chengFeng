@@ -32,7 +32,7 @@
         <shiro:hasAnyPermissions name="study,tom">
             <li class="nav-item ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-university"></i>
+                    <i class="fa fa-book"></i>
                     <span class="title">学习</span>
                     <span class="arrow"></span>
                 </a>
@@ -45,35 +45,6 @@
                             </a>
                         </li>
                     </shiro:hasAnyPermissions>
-                    <!--<shiro:hasAnyPermissions name="js_study,tom">
-                        <li class="nav-aitem">
-                            <a th:href="@{/tom/study/js}" class="nav-link nav-toggle">
-                                <i class="fa fa-database"></i>
-                                <span class="title">Js学习</span>
-                            </a>
-                        </li>
-                    </shiro:hasAnyPermissions>
-                    <shiro:hasAnyPermissions name="java_study,tom">
-                        <li class="nav-item">
-                    <a th:href="@{/tom/study/java}" class="nav-link nav-toggle">
-                    <i class="fa fa-user-md"></i>
-                    <span class="title">Java学习</span>
-                    </a>
-                    </li>
-                    </shiro:hasAnyPermissions>
-                    <shiro:hasAnyPermissions name="python_study,tom">
-                    <li class="nav-item">
-                        <a th:href="@{/tom/study/python}" class="nav-link nav-toggle">
-                            <i class="fa fa-hospital-o"></i>
-                            <span class="title">Python学习</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:href="@{/tom/study/else}" class="nav-link nav-toggle">
-                            <i class="fa fa-hand-o-right"></i>
-                            <span class="title">其他学习</span>
-                        </a>
-                    </li>-->
                     <li class="nav-item">
                         <a th:href="@{/tom/study/code}" class="nav-link nav-toggle">
                             <i class="fa fa-th-list"></i>
@@ -94,15 +65,30 @@
                     </li>
                     <li class="nav-item ">
                         <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="fa fa-bar-chart"></i>
+                            <i class="fa fa-chrome"></i>
                             <span class="title">Js学习</span>
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item">
                                 <a th:href="@{/tom/study/simpleJs}" class="nav-link nav-toggle">
-                                    <i class="fa fa-bug"></i>
+                                    <i class="fa fa-address-card"></i>
                                     <span class="title">Js基础笔记</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-wrench"></i>
+                            <span class="title">各种小工具</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item">
+                                <a  th:href="@{/tom/study/demo/magnify_demo}" class="nav-link nav-toggle">
+                                    <i class="fa fa-search-plus"></i>
+                                    <span class="title">放大镜-magnify</span>
                                 </a>
                             </li>
                         </ul>
@@ -150,9 +136,15 @@
                 <ul class="sub-menu">
                     <shiro:hasAnyPermissions name="tom,game">
                         <li class="nav-item start">
-                            <a th:href="@{/tom/game/saolei}" class="nav-link nav-toggle">
+                            <a target="_blank" th:href="@{/tom/game/saolei}" class="nav-link nav-toggle">
                                 <i class="fa fa-smile-o"></i>
                                 <span class="title">扫雷</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start">
+                            <a target="_blank" th:href="@{/tom/game/draw}" class="nav-link nav-toggle">
+                                <i class="fa fa-smile-o"></i>
+                                <span class="title">涂鸦</span>
                             </a>
                         </li>
                     </shiro:hasAnyPermissions>

@@ -3,9 +3,11 @@ package com.tom.cf.api;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.tom.cf.api.dto.AddUserDTO;
-import com.tom.cf.api.utils.R;
-import com.tom.cf.api.utils.ShiroUtils;
+import com.tom.cf.core.entity.User;
 import com.tom.cf.core.service.UserService;
+import com.tom.cf.core.utils.R;
+import com.tom.cf.core.utils.ShiroUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -89,6 +91,21 @@ public class LoginApi {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return "redirect:/ui/frontend/login";
+    }
+    @RequestMapping("/updatePassword")
+    public String UpdatePassword(String userId, String password, String newPassword) {
+        User user = userService.findUserByUserId(userId);
+        if(user!=null && user.getPassword().equals(ShiroUtils.sha256(password, user.getSalt()))){
+            //sha256加密
+            String salt = RandomStringUtils.randomAlphanumeric(20);
+            user.setSalt(salt);
+            user.setPassword(ShiroUtils.sha256(user.getPassword(), user.getSalt()));
+            userService.update(user);
+            return "";
+        }
+
+        return "";
+
     }
 
     /**

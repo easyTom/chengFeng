@@ -1,5 +1,6 @@
 package com.tom.cf.core.service;
 
+import com.tom.cf.core.dao.mapper.AuthMapper;
 import com.tom.cf.core.dao.repository.UserRepository;
 import com.tom.cf.core.entity.User;
 import com.tom.cf.core.utils.ShiroUtils;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthMapper authMapper;
 
     public String findIdByUserName(String userName){
         return userRepository.findIdByUserName(userName);
@@ -53,5 +58,14 @@ public class UserService {
 
     public User findUserByToken(String token){
         return userRepository.findByToken(token);
+    }
+
+    public User getUserByName(String account) {
+        return authMapper.findByName(account);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void update(User u) {
+        userRepository.saveAndFlush(u);
     }
 }

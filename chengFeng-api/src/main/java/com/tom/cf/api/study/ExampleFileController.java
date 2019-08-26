@@ -1,13 +1,13 @@
-package com.tom.cf.api;
+package com.tom.cf.api.study;
 
-import com.tom.cf.api.dto.DataTableRequest;
-import com.tom.cf.api.dto.DataTableResponse;
-import com.tom.cf.api.dto.HttpCode;
-import com.tom.cf.api.dto.ResultDTO;
-import com.tom.cf.core.entity.FcCode;
-import com.tom.cf.core.service.StudyCodeService;
+import com.tom.cf.api.dto.*;
+import com.tom.cf.core.dao.config.WebUtil;
+import com.tom.cf.core.entity.FcExample;
+import com.tom.cf.core.service.StudyExampleService;
+import com.tom.cf.core.utils.FcFileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,6 +19,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,15 +29,16 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/tom/api/study/code")
-public class CodeApi {
+@RequestMapping("/tom/api/study/example")
+public class ExampleFileController {
 
     @Autowired
-    public StudyCodeService studyService;
-
+    public StudyExampleService studyService;
+    @Value("${tom.files.path}")
+    private String dirPath;
 
     @PostMapping(value = "del")
-    public ResponseEntity del(FcCode m) {
+    public ResponseEntity del(FcExample m) {
         studyService.del(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
@@ -42,36 +46,68 @@ public class CodeApi {
     }
 
     @PostMapping("/add")
-    public ResponseEntity save(FcCode m){
-        studyService.save(m);
+    public ResponseEntity save(ExampleDTO exampleDTO){
+        ResultDTO result = ResultDTO.newInstance();
+        try {
+            exampleDTO.storageFile(dirPath);
+            studyService.save(exampleDTO.convert());
+        } catch (IOException e) {
+            e.printStackTrace();
+            result.setResultCode(HttpCode.BAD_REQUEST);
+        }
+
+
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping(value = "/update")
+    public ResponseEntity update(FcExample m) {
+        //修改文件 带实现
+        studyService.update(m);
         ResultDTO result = ResultDTO.newInstance();
         result.setResultCode(HttpCode.OK);
         return ResponseEntity.ok(result);
     }
 
+
     @GetMapping("/{id}")
-    public ResultDTO getCodesById(@PathVariable("id") String id) {
+    public ResultDTO getExamplesById(@PathVariable("id") String id) {
         ResultDTO result = ResultDTO.newInstance();
         if (StringUtils.isNotBlank(id)) {
-            Optional<FcCode> notice = studyService.getById(id);
+            Optional<FcExample> notice = studyService.getById(id);
             result.setData(notice.get());
         }
         result.setResultCode(HttpCode.OK);
         return result;
     }
 
+    @GetMapping("/download")
+    public void download(String id, HttpServletResponse response){
+        FcExample e =  studyService.findByUserId(id).get();
+        File file = ExampleDTO.getFile(dirPath,e.getUserId(),e.getFileName());
+        if(!file.exists()){
+            return;
+        }
+        try {
+            FcFileUtil.download(file,response);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
     @RequestMapping("/list")
     public DataTableResponse list(DataTableRequest dr) {
         Map<String, Object> conditions = dr.getConditions();
-        Sort sort = new Sort(Sort.Direction.DESC, "updateAt");//排序规则   多条件
-        Page<FcCode> page = studyService.findPageByUserid(new Specification<FcCode>() {
+        Sort sort = new Sort(Sort.Direction.DESC, "count").and(new Sort(Sort.Direction.DESC, "updateAt"));//排序规则   多条件
+        Page<FcExample> page = studyService.findPageByUserid(new Specification<FcExample>() {
             //root 里的是类里的属性
             @Override
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> list = new ArrayList<>();
-                String title = (String) conditions.get("title");
-                if (StringUtils.isNotEmpty(title)) {
-                    Predicate predicate = criteriaBuilder.like(root.get("title").as(String.class), "%" + title + "%");
+                String name = (String) conditions.get("name");
+                if (StringUtils.isNotEmpty(name)) {
+                    Predicate predicate = criteriaBuilder.like(root.get("name").as(String.class), "%" + name + "%");
                     list.add(predicate);
                 }
                 String sdate = (String) conditions.get("sdate");
@@ -80,8 +116,8 @@ public class CodeApi {
                     Predicate predicate = criteriaBuilder.between(root.get("updateAt").as(String.class), sdate, edate);
                     list.add(predicate);
                 }
-                //Predicate predicate = criteriaBuilder.equal(root.get("userId").as(String.class), WebUtil.getCurrentUser().getUserId());
-                //list.add(predicate);
+                Predicate predicate = criteriaBuilder.equal(root.get("userId").as(String.class), WebUtil.getCurrentUser().getUserId());
+                list.add(predicate);
                 Predicate[] ps = new Predicate[list.size()];
                 criteriaQuery.where(criteriaBuilder.and(list.toArray(ps)));
                 return criteriaQuery.getRestriction();

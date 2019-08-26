@@ -1,8 +1,5 @@
 server:
   port: 8821
-  servlet:
-    session:
-      timeout: 36000s
 
 spring:
   servlet:
@@ -80,9 +77,9 @@ spring.thymeleaf:
   cache: false
 #文件保存前缀
 tom.files.path: D:/fcFiles/
-logging:
-  file: chengFeng.log
-  path: D:/log/
+#logging:
+ # file: chengFeng.log
+ # path: D:/log/
 mybatis:
   # type-aliases-package: com.tom.cf.core.entity
   mapper-locations: classpath:mapper/*.xml

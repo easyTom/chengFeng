@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{backend/layouts/default}">
+
+<head th:include="backend/layouts/default :: htmlhead" th:with="title='bsc'">
+    <link th:href="@{/assets/global/plugins/datatables/datatables.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/global/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper" style="color: #ffd7e5;">
+        <div class="page-content">
+
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a th:href="@{/tom/index}">首页</a>
+                        <i class="fa fa-angle-right"></i>
+                    <li>
+                        放大镜
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+
+                        <i class="fa fa-calendar"></i>
+                        <span class="caption-subject bold uppercase"> 放大镜</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 " style="padding: 0px 0;" >
+                <a   data-magnify style="max-width: 150px" href="/data/2019/05/15/photo/20988e002c094234a933487659a4dc5b.png">
+                    <img  src="/data/2019/05/15/photo/20988e002c094234a933487659a4dc5b_min.png">
+                    </a>
+                </div>
+        </div>
+    </div>
+    <style>
+        .magnify-stage {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-width: 0;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/spa/jquery.magnify.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/common/tomMagnifyControl.js}"></script>
+    <script>
+        $(document).ready(function () {
+            tomMagnifyControl.init(true);
+        });
+    </script>
+</section>
+</body>
+</html>

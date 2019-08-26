@@ -58,6 +58,13 @@ var TableDatatablesManaged = function () {
                 html+='<a onclick="javascript:TableDatatablesManaged.del(\''+rid+'\');">删除 </a>';
                 $('td',row).eq(3).html(html);
 
+                /*if( $("#initTableRow").val() == data.examId){
+                    var open = setInterval(function() {
+                        $(`#myTable`).find('tbody').find(`tr:eq(${index})`).find('td:eq(2)').click();
+                        clearInterval(open)
+                    }, 10)
+                }*/
+
             }
         });
         $("#btn_search").on('click',function(){

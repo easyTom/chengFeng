@@ -1,9 +1,9 @@
 package com.tom.cf.shiro;
 
-import com.tom.cf.api.utils.ShiroUtils;
 import com.tom.cf.core.entity.User;
 import com.tom.cf.core.service.UserRightService;
 import com.tom.cf.core.service.UserService;
+import com.tom.cf.core.utils.ShiroUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -59,7 +59,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             /*SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getPassword(), getName());
             return simpleAuthenticationInfo;*/
             //盐值加密
-           return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+            return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
         }
     }
 

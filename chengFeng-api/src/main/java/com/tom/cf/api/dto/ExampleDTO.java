@@ -1,8 +1,8 @@
 package com.tom.cf.api.dto;
 
-import com.tom.cf.api.utils.FcFileUtil;
 import com.tom.cf.core.dao.config.WebUtil;
 import com.tom.cf.core.entity.FcExample;
+import com.tom.cf.core.utils.FcFileUtil;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.multipart.MultipartFile;

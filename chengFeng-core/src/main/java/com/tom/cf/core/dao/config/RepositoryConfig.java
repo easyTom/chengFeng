@@ -49,7 +49,7 @@ public class RepositoryConfig {
                 .dataSource(dataSource)
                 .properties(getVendorProperties())
                  //设置实体类所在位置
-                .packages("com.tom.cf.core.entity")
+                .packages("com.tom.cf.core.entity","com.tom.cf.core.mobile")
                 .persistenceUnit("PersistenceUnit")
                 .build();
     }

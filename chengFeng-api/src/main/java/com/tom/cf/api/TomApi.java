@@ -1,8 +1,5 @@
 package com.tom.cf.api;
 
-import com.tom.cf.api.utils.IdGen;
-import com.tom.cf.api.utils.ResizeImageUtils;
-import com.tom.cf.api.utils.UploadUtils;
 import com.tom.cf.api.v2.drawer.DataDrawer;
 import com.tom.cf.api.v2.drawer.EcgPicWriter;
 import com.tom.cf.api.v2.drawer.PaperDrawer;
@@ -11,6 +8,9 @@ import com.tom.cf.api.v2.parser.Hl7Parser;
 import com.tom.cf.api.v2.util.EcgUtil;
 import com.tom.cf.core.entity.FcUpload;
 import com.tom.cf.core.service.UploadService;
+import com.tom.cf.core.utils.IdGen;
+import com.tom.cf.core.utils.ResizeImageUtils;
+import com.tom.cf.core.utils.UploadUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -20,6 +20,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Value("${tom.files.path}")
     private String path;
 
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("redirect:/ui/frontend/login");

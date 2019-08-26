@@ -91,7 +91,11 @@ var tomUploadControl = function (o) {
         if(data.result){
             bootbox.alert("上传成功!");
             // 刷新当前页面
-            location.reload();
+            $("#UploadImage").val('');
+            $("#Modal").modal('hide');
+            // 刷新当前页面
+            $('#myTable').dataTable().fnClearTable(0);
+            $('#myTable').dataTable().fnDraw();
         }else{
             bootbox.alert("上传失败!");
         }
@@ -120,8 +124,8 @@ var tomUploadControl = function (o) {
                     //当ctx为空的时候需要ctx+/data/ data前面需要加/
                     var url =  ctx + '/data/'+data.filePath.substring(0,data.filePath.lastIndexOf('.'));
                     var img = '<div class="col-md-12 col-sm-12 col-xs-12 " style="padding: 0px 0;" >' +
-                        '<a class="thumbnail" style="max-width: 150px" href="' +url+ '.png' + '" data-magnify="group1" data-caption="">' +
-                        '<img onload="tomUploadControl.AutoSize(this,150,150,150)" src="' + url + '_min.png' + '">' +
+                        '<a class="thumbnail" style="max-width: 150px" href="' +url+ '.png' + '"  data-magnify>' +
+                        '<img onload="tomMagnifyControl.AutoSize(this,150,150,150)" src="' + url + '_min.png' + '">' +
                         '</a>' +
                         '</div>';
                     $("#"+idNamePre+id).append(img);
@@ -133,43 +137,15 @@ var tomUploadControl = function (o) {
         });
     }
 
-    //等比例放大缩小图片(适应容器)    图片,最大宽,最大高,父元素高
-    //可以在img 里面 onload="AutoSize(XXX)"
-    var AutoSize = function (Img, maxWidth, maxHeight,fatherHeight) {
-        var image = new Image();
-        //原图片原始地址（用于获取原图片的真实宽高，当<img>标签指定了宽、高时不受影响）
-        image.src = Img.src;
-        // 当图片比图片框小时不做任何改变
-        if (image.width < maxWidth&& image.height < maxHeight) {
-            Img.width = image.width;
-            Img.height = image.height;
-        }
-        else //原图片宽高比例 大于 图片框宽高比例,则以框的宽为标准缩放，反之以框的高为标准缩放
-        {
-            if (maxWidth/ maxHeight  <= image.width / image.height) //原图片宽高比例 大于 图片框宽高比例
-            {
-                Img.width = maxWidth;   //以框的宽度为标准
-                Img.height = maxWidth* (image.height / image.width);
-            }
-            else {   //原图片宽高比例 小于 图片框宽高比例
-                Img.width = maxHeight  * (image.width / image.height);
-                Img.height = maxHeight  ;   //以框的高度为标准
-            }
-        }
-        //居中
-        var h = (fatherHeight - Img.height) / 2
-        $(Img).attr("style","margin-top:"+h+"px");
-    }
-
     return{
         upload:doUploadEcgFile,
         init:function (param) {
             initParams(param);
             toUploadEcgFile();
         },
-        min:lookupMin,
-        AutoSize:AutoSize
-
+        min:function(method,id,url,idNamePre){
+            lookupMin(method,id,url,idNamePre);
+        },
     }
 }(123);
 //()内作为参数可以作为参数传入方法

@@ -1,4 +1,4 @@
-package com.tom.cf.api.utils;
+package com.tom.cf.core.utils;
 
 import java.security.SecureRandom;
 import java.util.UUID;

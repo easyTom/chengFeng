@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,String>,JpaSpecificationExecutor<User> {
+
     @Query("select userId from User where userName=?1 and status = '1'")
     String findIdByUserName(String userName);
 
@@ -22,4 +23,5 @@ public interface UserRepository extends JpaRepository<User,String>,JpaSpecificat
     User findByUserNameAndStatus(String userName, Integer status);
 
     User findByToken(String token);
+
 }

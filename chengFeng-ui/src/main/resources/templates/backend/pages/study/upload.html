@@ -71,47 +71,7 @@
                 </div>
             </div>
         </div>
-
-
-   <!--上传模态窗-->
-        <div id="Modal" class="modal fade" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="h4"></h4>
-                    </div>
-                    <form id="uploadForm" method="post" novalidate="novalidate" onsubmit="return false;">
-                        <div class="modal-body">
-                            <div class="scroller" style="height:150px" data-always-visible="1" data-rail-visible1="1">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger display-hide" style="display: hide;"id="error_div">
-                                            <button class="close" data-close="alert"></button> <span id="check_msg"></span>
-                                        </div>
-                                        <div class="form-group">
-                                             <label class="control-label" id="h5"></label>
-                                            <input type="file" name="tomFile"  id="UploadImage"/>
-                                        </div>
-                                        <!-- 上传进度条 -->
-                                        <div class="form-group">
-                                            <div class="progress progress-striped active margin-top-10">
-                                                <div id="Procebar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%;color:red;text-align: center;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" id="quxiao" data-dismiss="modal" class="btn dark btn-outline">取消</button>
-                            <button type="button" onclick="tomUploadControl.upload()" class="btn green">确定</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <div th:replace="~{backend/pages/common/tomModal :: tom_upload}"  ></div>
 
     <style>
         .magnify-stage {
@@ -125,15 +85,13 @@
             font-size: 100px;
             cursor: pointer;
         }
-        .magnify-header{
-            z-index: 9999
-        }
     </style>
     <script th:src="@{/assets/global/plugins/moment.min.js}" type="text/javascript"></script>
     <link th:href="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css}" rel="stylesheet" type="text/css" />
     <script th:src="@{/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js}" type="text/javascript"></script>
     <script th:src="@{/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/spa/jquery.magnify.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/common/tomMagnifyControl.js}"></script>
     <script type="text/javascript" charset="utf-8"  th:src="@{/backend/common/tomUploadControl.js}"></script>
     <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/spa/spa_list_subrow_ecg_control.js}"></script>
     <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/spa/spa_list_subrow_att_control.js}"></script>
