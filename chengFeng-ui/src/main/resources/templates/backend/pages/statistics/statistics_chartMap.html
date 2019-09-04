@@ -23,7 +23,7 @@
                         <a th:href="@{/tom/index}">首页</a>
                         <i class="fa fa-angle-right"></i>
                     <li>
-                        放大镜
+                        统计分析
                     </li>
                 </ul>
             </div>
@@ -31,40 +31,18 @@
             <div class="portlet light ">
                 <div class="portlet-title">
                     <div class="caption">
-
                         <i class="fa fa-calendar"></i>
-                        <span class="caption-subject bold uppercase"> 放大镜</span>
+                        <span class="caption-subject bold uppercase"> 地图统计</span>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-12 col-sm-12 col-xs-12 " style="padding: 0px 0;" >
-                <a   data-magnify style="max-width: 150px" href="/data/2019/05/15/photo/20988e002c094234a933487659a4dc5b.png">
-                    <img  src="/data/2019/05/15/photo/20988e002c094234a933487659a4dc5b_min.png">
-                    </a>
-            </div>
-            <div>
-                <p>当你需要js动态append出来img的时候想初始化配置。需要在append之后初始化！</p>
-                <p>$('[data-magnify]').magnify({});</p>
+            <div  id="map" style="width: 800px;height:400px;float: left">
             </div>
         </div>
     </div>
-    <style>
-        .magnify-stage {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            border-width: 0;
-        }
-    </style>
-    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/study/spa/jquery.magnify.js}"></script>
-    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/common/tomMagnifyControl.js}"></script>
-    <script>
-        $(document).ready(function () {
-            tomMagnifyControl.init(true);
-        });
-    </script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/statistics/echarts/e.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/common/tomMapControl.js}"></script>
+    <script type="text/javascript" charset="utf-8"  th:src="@{/backend/statistics/echarts/tom/initCharts.js}"></script>
 </section>
 </body>
 </html>

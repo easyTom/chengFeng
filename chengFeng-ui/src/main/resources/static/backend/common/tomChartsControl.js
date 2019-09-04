@@ -104,7 +104,7 @@ var tomChartsControl = function () {
                chartData = o;
             },
             datatype: "json",
-            async: false
+            async: falseZ
         });
         var chart = AmCharts.makeChart(elementId, {
             "type": "pie",
@@ -114,13 +114,15 @@ var tomChartsControl = function () {
             "dataProvider": chartData,
             "valueField": "count",
             "titleField": "id",
+            //chartData里如果包含color就会根据值显示饼的颜色
+            "colorField": "color",
         });
 
         $('#'+elementId).closest('.portlet').find('.fullscreen').click(function () {
             chart.invalidateSize();
         });
     }
-    //饼状图
+    //折线图
     var initZSchart = function (url,data,elementId) {
         if(!elementId){
             elementId = 'chart'

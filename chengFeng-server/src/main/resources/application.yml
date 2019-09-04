@@ -61,7 +61,6 @@ spring:
   #cache:
   #  ehcache:
   #    config: classpath:
-
 core.security.shiro:
   casServerUrlPrefix: http://localhost/bscsso
   casValidatorUrl: http://localhost/bscsso
@@ -72,7 +71,6 @@ core.security.shiro:
     /api/**: anon
     /cas: cas
     /nmis/**: anon
-
 spring.thymeleaf:
   cache: false
 #文件保存前缀

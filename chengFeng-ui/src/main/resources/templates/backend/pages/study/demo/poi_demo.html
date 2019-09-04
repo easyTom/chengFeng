@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head >
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <link href="/static/js/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<form action="/study/poi/importExcel" enctype="multipart/form-data" method="post">
+	导入学生信息：<input type="file" name="file"><br/>
+	<input type="submit" value="导入"><input type="button" value="导出" onclick="exportExcel()">
+</form>
+<script type="text/javascript">
+    function exportExcel(){
+        location.href = "/study/poi/exportExcel";
+    }
+</script>
+</body>
+</html>
