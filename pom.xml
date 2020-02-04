@@ -25,7 +25,7 @@
         <spring.boot.version>2.0.1.RELEASE</spring.boot.version>
         <druid.version>1.1.6</druid.version>
         <pugin.linkViewer.version>1.0-SNAPSHOT</pugin.linkViewer.version>
-        <shiro.version>1.2.3</shiro.version>
+        <shiro.version>1.5.0</shiro.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-codec.version>1.9</commons-codec.version>
         <guava.version>19.0</guava.version>
